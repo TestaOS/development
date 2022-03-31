@@ -1,0 +1,29 @@
+NAME='libftdi'
+VERSION='1.1.5'
+DIRECTORY='libftdi1-1.5'
+DEPENDENCIES='libusb-1.0.25 boost-1.78.0 swig-4.0.2 python-3.10.3 confuse-3.3'
+FILENAME='libftdi1-1.5.tar.bz2'
+SOURCE="https://www.intra2net.com/en/developer/libftdi/download/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	cmake .. \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_SKIP_BUILD_RPATH=ON \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DEXAMPLES=OFF \
+	-DFTDI_EEPROM=ON \
+	-DFTDIPP=ON \
+	-DPYTHON_BINDINGS=ON \
+	-DLINK_PYTHON_LIBRARY=ON
+
+	make -j$(nproc) V=1
+}
+
+install() {
+	make install DESTDIR="$DESTDIR"
+}
+
+

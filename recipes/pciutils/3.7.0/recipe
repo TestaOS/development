@@ -1,0 +1,14 @@
+NAME='pciutils'
+VERSION='3.7.0'
+DIRECTORY='pciutils-3.7.0'
+DEPENDENCIES=''
+FILENAME='pciutils-3.7.0.tar.xz'
+SOURCE="https://www.kernel.org/pub/software/utils/pciutils/$FILENAME"
+
+build() {
+	make PREFIX=/usr
+}
+
+install() {
+	make PREFIX=/usr install install-lib DESTDIR="$DESTDIR"
+}

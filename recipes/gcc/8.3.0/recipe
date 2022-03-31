@@ -1,0 +1,51 @@
+NAME='gcc'
+VERSION='8.3.0'
+DIRECTORY='gcc-8.3.0'
+DEPENDENCIES=''
+FILENAME='gcc-8.3.0.tar.xz'
+SOURCE="http://ftp.gwdg.de/pub/misc/gcc/releases/gcc-8.3.0/$FILENAME"
+
+build() {
+	./contrib/download_prerequisites
+	mkdir build
+	cd build
+
+	../libstdc++-v3/configure \
+	--prefix=/usr \
+	--disable-multilib \
+	--disable-nls \
+	--enable-libstdcxx-threads \
+	--disable-libstdcxx-pch
+    
+	make -j$(nproc) V=1
+	make install DESTDIR="$DESTDIR"
+	make install
+
+	../configure \
+	--prefix="$DESTDIR" \
+	--with-sysroot=/ \
+	--enable-threads=posix \
+	--enable-languages=c,c++ \
+	--enable-__cxa_atexit \
+	--disable-libmudflap \
+	--disable-libssp \
+	--disable-libgomp \
+	--disable-nls \
+	--disable-multilib \
+	--disable-libquadmath \
+	--disable-libquadmath-support \
+	--disable-libsanitizer \
+	--disable-libmpx \
+	--disable-libstdcxx-pch \
+	--enable-libstdcxx-threads \
+	--disable-gold \
+	--disable-bootstrap \
+	--enable-long-long
+
+	make -j$(nproc) V=1
+}
+
+install() {
+        make install
+	ln -s gcc "$DESTDIR/bin/cc"
+}

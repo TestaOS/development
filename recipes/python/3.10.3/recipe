@@ -1,0 +1,23 @@
+NAME='python'
+VERSION='3.10.3'
+DIRECTORY='Python-3.10.3'
+DEPENDENCIES='libffi-3.4.2 openssl-1.1.1n zlib-1.2.11'
+FILENAME='Python-3.10.3.tar.xz'
+SOURCE="https://www.python.org/ftp/python/3.10.3/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--with-system-ffi \
+	--disable-test-modules \
+	--with-ensurepip=install
+
+	make -j$(nproc) V=1
+}
+
+install() {
+        make install DESTDIR="$DESTDIR"
+	cd "$DESTDIR/usr/bin"
+	ln -s python3 python
+	ln -s pip3 pip
+}

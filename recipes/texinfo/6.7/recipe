@@ -1,0 +1,19 @@
+NAME='texinfo'
+VERSION='6.7'
+DIRECTORY='texinfo-6.7'
+DEPENDENCIES=''
+FILENAME='texinfo-6.7.tar.xz'
+SOURCE="https://ftp.gnu.org/gnu/texinfo/$FILENAME"
+
+build() {
+	./configure --prefix=/usr --enable-static --disable-shared
+
+	make -j$(nproc) V=1
+}
+
+install() {
+	make install DESTDIR="$DESTDIR"
+}
+
+
+

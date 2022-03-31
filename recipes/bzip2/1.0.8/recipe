@@ -1,0 +1,26 @@
+NAME='bzip2'
+VERSION='1.0.8'
+DIRECTORY='bzip2-1.0.8'
+DEPENDENCIES=''
+FILENAME="bzip2-1.0.8.tar.gz"
+SOURCE="https://sourceware.org/pub/bzip2/$FILENAME"
+
+build() {
+	make -j$(nproc) V=1        
+}
+
+install() {
+        make install PREFIX="$DESTDIR/usr"
+
+	unlink /tmp/package/usr/bin/bzcmp
+	ln -s bzdiff /tmp/package/usr/bin/bzcmp
+
+	unlink /tmp/package/usr/bin/bzegrep 
+        ln -s bzgrep /tmp/package/usr/bin/bzegrep
+
+	unlink /tmp/package/usr/bin/bzfgrep
+        ln -s bzgrep /tmp/package/usr/bin/bzfgrep
+
+	unlink /tmp/package/usr/bin/bzless
+        ln -s bzmore /tmp/package/usr/bin/bzless
+}

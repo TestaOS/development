@@ -1,0 +1,6 @@
+NAME='readline'
+VERSION='8.1.2'
+DIRECTORY='readline-8.1.2'
+DEPENDENCIES='ncurses-6.3'
+FILENAME="readline-8.1.2.tar.gz"
+SOURCE="https://ftp.gnu.org/gnu/readline/$FILENAME"

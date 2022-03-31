@@ -1,0 +1,32 @@
+NAME='gcc'
+VERSION='11.2.0'
+DIRECTORY='gcc-11.2.0'
+DEPENDENCIES='gmp-6.2.1 mpfr-4.1.0 mpc-1.2.1'
+FILENAME='gcc-11.2.0.tar.xz'
+SOURCE="http://ftp.gwdg.de/pub/misc/gcc/releases/gcc-11.2.0/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	../configure \
+	--prefix="$DESTDIR" \
+	--with-sysroot=/ \
+	--disable-bootstrap \
+	--enable-static \
+	--disable-shared \
+	--enable-lto \
+	--with-static-standard-libraries \
+	--enable-languages=c
+
+	#--disable-libstdcxx
+	#--enable-languages=all
+
+	make V=1
+}
+
+install() {
+        echo
+	#make install
+	#ln -s gcc "$DESTDIR/bin/cc"
+}

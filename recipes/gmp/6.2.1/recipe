@@ -1,0 +1,19 @@
+NAME='gmp'
+VERSION='6.2.1'
+DIRECTORY='gmp-6.2.1'
+DEPENDENCIES=''
+FILENAME='gmp-6.2.1.tar.xz'
+SOURCE="https://gmplib.org/download/gmp/$FILENAME"
+
+build() {
+	./configure --prefix=/usr \
+        --enable-cxx \
+	--enable-static \
+	--disable-shared
+
+	make -j$(nproc) V=1
+}
+
+install() {
+        make install DESTDIR="$DESTDIR"
+}

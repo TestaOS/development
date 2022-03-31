@@ -1,0 +1,15 @@
+NAME='autoconf'
+VERSION='2.69'
+DIRECTORY='autoconf-2.69'
+DEPENDENCIES='perl-5.34.1'
+FILENAME='autoconf-2.69.tar.xz'
+SOURCE="https://ftp.gnu.org/gnu/autoconf/$FILENAME"
+
+build() {
+        ./configure --prefix=/usr
+	make -j$(nproc) V=1
+}
+
+install() {
+        make install DESTDIR="$DESTDIR"
+}

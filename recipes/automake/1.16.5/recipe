@@ -1,0 +1,15 @@
+NAME='automake'
+VERSION='1.16.5'
+DIRECTORY='automake-1.16.5'
+DEPENDENCIES=''
+FILENAME='automake-1.16.5.tar.xz'
+SOURCE="https://ftp.gnu.org/gnu/automake/$FILENAME"
+
+build() {
+	./configure --prefix=/usr
+	make -j$(nproc) V=1
+}
+
+install() {
+	make install DESTDIR="$DESTDIR"
+}

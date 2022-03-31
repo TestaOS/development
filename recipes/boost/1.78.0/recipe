@@ -1,0 +1,18 @@
+NAME='boost'
+VERSION='1.78.0'
+DIRECTORY='boost_1_78_0'
+DEPENDENCIES=''
+FILENAME='boost-1.78.0.tar.bz2'
+SOURCE="https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2"
+
+build() {
+	./bootstrap.sh \
+	--prefix="$DESTDIR" \
+	--with-python=python3
+
+	./b2 stage -j$(nproc) --prefix="$DESTDIR" threading=multi link=static
+}
+
+install() {
+        ./b2 install --prefix="$DESTDIR" threading=multi link=static
+}

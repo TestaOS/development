@@ -1,0 +1,29 @@
+NAME='binutils'
+VERSION='2.38'
+DIRECTORY='binutils-2.38'
+DEPENDENCIES=''
+FILENAME='binutils-2.38.tar.xz'
+SOURCE="https://ftp.gnu.org/gnu/binutils/$FILENAME"
+
+build() {
+	./configure \
+	CFLAGS="-O2 -s" \
+	--prefix="$DESTDIR" \
+	--with-sysroot=/ \
+	--with-float=hard \
+	--disable-werror \
+	--disable-multilib \
+	--disable-sim \
+	--disable-gdb \
+	--disable-nls \
+	--enable-ld=default \
+	--enable-gold=yes \
+	--enable-threads \
+	--enable-plugins
+
+	make tooldir="$DESTDIR"
+}
+
+install() {
+	make tooldir="$DESTDIR" install
+}

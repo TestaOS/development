@@ -1,0 +1,22 @@
+NAME='curl'
+VERSION='7.65.3'
+DIRECTORY='curl-7.65.3'
+DEPENDENCIES='perl-5.34.1'
+FILENAME='curl-7.65.3.tar.xz'
+SOURCE="https://curl.haxx.se/download/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--enable-static \
+	--disable-shared \
+	--enable-threaded-resolver \
+	--with-ca-fallback
+		
+	make -j$(nproc) V=1        
+}
+
+install() {
+        make install DESTDIR="$DESTDIR"
+}
+

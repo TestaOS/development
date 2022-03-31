@@ -1,0 +1,19 @@
+NAME='libtool'
+VERSION='2.4.6'
+DIRECTORY='libtool-2.4.6'
+DEPENDENCIES=''
+FILENAME='libtool-2.4.6.tar.gz'
+SOURCE="https://ftp.gnu.org/gnu/libtool/$FILENAME"
+
+build() {
+        ./configure \
+        --prefix=/usr \
+        --enable-static \
+        --disable-shared
+
+        make -j$(nproc) V=1
+}
+
+install() {
+        make install DESTDIR="$DESTDIR"
+}

@@ -1,0 +1,29 @@
+NAME='glibc'
+VERSION='2.35'
+DIRECTORY='glibc-2.35'
+DEPENDENCIES='gawk-5.1.1 python-3.10.3 grep-3.7'
+FILENAME="glibc-2.35.tar.xz"
+SOURCE="https://ftp.gnu.org/gnu/glibc/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	../configure \
+	--prefix= \
+	--includedir=/include \
+	--libexecdir=/libexec \
+	--with-tls \
+	--with-fp \
+	--without-cvs \
+	--without-gd \
+	--enable-kernel=5.10.0 \
+	--enable-stack-protector=strong \
+	--enable-shared \
+	--enable-obsolete-rpc \
+	--disable-profile \
+	--disable-debug \
+	--disable-werror
+                
+        make -j$(nproc) V=1
+}

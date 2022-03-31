@@ -1,0 +1,29 @@
+NAME='ncurses'
+VERSION='6.3'
+DIRECTORY='ncurses-6.3'
+DEPENDENCIES=''
+FILENAME='ncurses-6.3.tar.gz'
+SOURCE="https://ftp.gnu.org/pub/gnu/ncurses/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+	../configure
+
+	make -j$(nproc) V=1 -C include
+	make -j$(nproc) V=1 -C progs tic
+
+	cd ..
+
+	./configure --prefix=/usr \
+        --with-static \
+        --without-debug \
+        --without-ada \
+        --without-normal \
+        --enable-widec	
+}
+
+install() {
+	make DESTDIR="$DESTDIR" TIC_PATH=$(pwd)/build/progs/tic install
+	ln -s libncursesw.a /tmp/package/usr/lib/libncurses.a
+}

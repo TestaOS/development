@@ -1,0 +1,6 @@
+NAME='confuse'
+VERSION='3.3'
+DIRECTORY='confuse-3.3'
+DEPENDENCIES=''
+FILENAME='confuse-3.3.tar.xz'
+SOURCE="https://github.com/libconfuse/libconfuse/releases/download/v3.3/$FILENAME"

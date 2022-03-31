@@ -1,0 +1,19 @@
+NAME='mpc'
+VERSION='1.2.1'
+DIRECTORY='mpc-1.2.1'
+DEPENDENCIES='gmp-6.2.1 mpfr-4.1.0'
+FILENAME='mpc-1.2.1.tar.gz'
+SOURCE="https://ftp.gnu.org/gnu/mpc/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+        --enable-static \
+	--disable-shared
+
+	make -j$(nproc) V=1
+}
+
+install() {
+        make install DESTDIR="$DESTDIR"
+}

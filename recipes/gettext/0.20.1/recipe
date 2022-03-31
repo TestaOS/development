@@ -1,0 +1,21 @@
+NAME='gettext'
+VERSION='0.20.1'
+DIRECTORY='gettext-0.20.1'
+DEPENDENCIES=''
+FILENAME='gettext-0.20.1.tar.xz'
+SOURCE="https://ftp.gnu.org/gnu/gettext/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--enable-static \
+	--disable-java
+		
+	make -j$(nproc) V=1
+}
+
+install() {
+        make install DESTDIR="$DESTDIR"
+}
+
+

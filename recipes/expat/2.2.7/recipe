@@ -1,0 +1,19 @@
+NAME='expat'
+VERSION='2.2.7'
+DIRECTORY='expat-2.2.7'
+DEPENDENCIES=''
+FILENAME='expat-2.2.7.tar.xz'
+SOURCE="https://github.com/libexpat/libexpat/releases/download/R_2_2_7/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--enable-static \
+	--disable-shared
+		
+	make -j$(nproc) V=1        
+}
+
+install() {
+	make install DESTDIR="$DESTDIR"
+}
