@@ -9,6 +9,6 @@ build() {
 	make PREFIX=/usr
 }
 
-install() {
+package() {
 	make PREFIX=/usr install install-lib DESTDIR="$DESTDIR"
 }

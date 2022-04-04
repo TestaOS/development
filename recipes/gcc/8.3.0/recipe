@@ -45,7 +45,7 @@ build() {
 	make -j$(nproc) V=1
 }
 
-install() {
+package() {
         make install
 	ln -s gcc "$DESTDIR/bin/cc"
 }

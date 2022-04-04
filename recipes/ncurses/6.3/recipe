@@ -23,7 +23,7 @@ build() {
         --enable-widec	
 }
 
-install() {
+package() {
 	make DESTDIR="$DESTDIR" TIC_PATH=$(pwd)/build/progs/tic install
 	ln -s libncursesw.a /tmp/package/usr/lib/libncurses.a
 }

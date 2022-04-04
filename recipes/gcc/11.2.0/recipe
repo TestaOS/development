@@ -17,16 +17,12 @@ build() {
 	--disable-shared \
 	--enable-lto \
 	--with-static-standard-libraries \
-	--enable-languages=c
-
-	#--disable-libstdcxx
-	#--enable-languages=all
+	--enable-languages=all
 
 	make V=1
 }
 
-install() {
-        echo
-	#make install
-	#ln -s gcc "$DESTDIR/bin/cc"
+package() {
+	make install
+	ln -s gcc "$DESTDIR/bin/cc"
 }

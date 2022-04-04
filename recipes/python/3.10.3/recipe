@@ -15,7 +15,7 @@ build() {
 	make -j$(nproc) V=1
 }
 
-install() {
+package() {
         make install DESTDIR="$DESTDIR"
 	cd "$DESTDIR/usr/bin"
 	ln -s python3 python

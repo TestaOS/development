@@ -1,0 +1,14 @@
+NAME='meson'
+VERSION='0.61.4'
+DIRECTORY='meson-0.61.4'
+DEPENDENCIES='python-3.10.3'
+FILENAME='meson-0.61.4.tar.gz'
+SOURCE="https://github.com/mesonbuild/meson/releases/download/0.61.4/$FILENAME"
+
+build() {
+	python3 setup.py build
+}
+
+package() {
+	python3 setup.py install --root=$DESTDIR
+}

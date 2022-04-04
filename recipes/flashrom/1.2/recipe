@@ -1,16 +1,20 @@
 NAME='flashrom'
 VERSION='1.2'
 DIRECTORY='flashrom-v1.2'
-DEPENDENCIES='python-3.10.3 libusb-1.0.25 pciutils-3.7.0 libftdi-1.1.5'
+DEPENDENCIES='python-3.10.3 libusb-1.0.25 libftdi-1.1.5 meson-0.61.4 ninja-1.10.2'
 FILENAME='flashrom-v1.2.tar.bz2'
 SOURCE="https://download.flashrom.org/releases/$FILENAME"
 
 build() {
-	pip install meson
-	meson setup ../build
-	
+	# Static library
+	sed -i '339s/shared/static/' meson.build
+	sed -i '344d' meson.build
+	sed -i '344d' meson.build
+
+	meson setup -Dprefix=/usr -Dpciutils=false ../build
+	ninja -v -C ../build
 }
 
-install() {
-	echo 'INSTALL'
+package() {
+	DESTDIR="$DESTDIR" ninja -C ../build install
 }

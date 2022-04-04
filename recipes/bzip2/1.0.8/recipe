@@ -9,7 +9,7 @@ build() {
 	make -j$(nproc) V=1        
 }
 
-install() {
+package() {
         make install PREFIX="$DESTDIR/usr"
 
 	unlink /tmp/package/usr/bin/bzcmp

@@ -48,7 +48,10 @@ echo 'Unpacking source...'
 tar xf "/opt/cache/$FILENAME" -C /tmp/source
 
 #Run build function
-cd "$DIRECTORY"
+if [ ! -z "$DIRECTORY" ]; then
+	cd "$DIRECTORY"
+fi
+
 if type 'build' 2>/dev/null | grep -q 'function'; then
 	build
 else
@@ -60,9 +63,9 @@ else
         make -j$(nproc) V=1
 fi
 
-#Run install function
-if type 'install' 2>/dev/null | grep -q 'function'; then
-	install
+#Run package function
+if type 'package' 2>/dev/null | grep -q 'function'; then
+	package
 else
 	make install DESTDIR="$DESTDIR"
 fi

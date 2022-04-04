@@ -24,6 +24,6 @@ build() {
 	make tooldir="$DESTDIR"
 }
 
-install() {
+package() {
 	make tooldir="$DESTDIR" install
 }

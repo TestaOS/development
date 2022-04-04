@@ -13,7 +13,3 @@ build() {
 
 	make -j$(nproc) V=1
 }
-
-install() {
-        make install DESTDIR="$DESTDIR"
-}

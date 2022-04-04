@@ -1,0 +1,16 @@
+NAME='vboot-utils'
+VERSION='R101-14588.B'
+DIRECTORY=''
+DEPENDENCIES='flashrom-1.2 libusb-1.0.25 openssl-1.1.1n libftdi-1.1.5 util-linux-2.38'
+FILENAME='vboot-utils-R101-14588.B.tar.gz'
+SOURCE="https://chromium.googlesource.com/chromiumos/platform/vboot_reference/+archive/refs/heads/release-R101-14588.B.tar.gz"
+
+build() {
+	make -j$(nproc) V=1        
+}
+
+package() {
+	make install DESTDIR="$DESTDIR" MINIMAL=1
+	mkdir -p $DESTDIR/usr/share/vboot/
+	cp -r tests/devkeys $DESTDIR/usr/share/vboot/devkeys
+}

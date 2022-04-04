@@ -1,0 +1,19 @@
+NAME='bash'
+VERSION='5.1.16'
+DIRECTORY='bash-5.1.16'
+DEPENDENCIES=''
+FILENAME='bash-5.1.16.tar.gz'
+SOURCE="https://ftp.gnu.org/gnu/bash/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--without-bash-malloc
+		
+	make -j$(nproc) V=1        
+}
+
+package() {
+        make install DESTDIR="$DESTDIR"
+	ln -sv bash $DESTDIR/usr/bin/sh
+}

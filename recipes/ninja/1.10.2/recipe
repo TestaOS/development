@@ -1,0 +1,16 @@
+NAME='ninja'
+VERSION='1.10.2'
+DIRECTORY='ninja-1.10.2'
+DEPENDENCIES='python-3.10.3'
+FILENAME='ninja-1.10.2.tar.gz'
+SOURCE="https://github.com/ninja-build/ninja/archive/refs/tags/v1.10.2.tar.gz"
+
+build() {
+	python3 configure.py --bootstrap
+}
+
+package() {
+	mkdir -p "$DESTDIR/usr/bin"
+	cp ninja "$DESTDIR/usr/bin"
+}
+

@@ -1,0 +1,23 @@
+NAME='openssl'
+VERSION='1.1.1n'
+DIRECTORY='openssl-1.1.1n'
+DEPENDENCIES='zlib-1.2.11'
+FILENAME='openssl-1.1.1n.tar.gz'
+SOURCE="https://www.openssl.org/source/$FILENAME"
+
+build() {
+	./Configure \
+	-DL_ENDIAN \
+	zlib-dynamic \
+	no-shared \
+	--prefix=/usr \
+	--openssldir=/usr/etc/ssl \
+	--libdir=lib \
+	linux-aarch64
+		
+	make -j$(nproc) V=1        
+}
+
+package() {
+	make install_sw install_ssldirs DESTDIR="$DESTDIR"
+}

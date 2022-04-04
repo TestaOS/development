@@ -15,15 +15,14 @@ build() {
 	-DCMAKE_BUILD_TYPE=Release \
 	-DEXAMPLES=OFF \
 	-DFTDI_EEPROM=ON \
-	-DFTDIPP=ON \
+	-DFTDIPP=OFF \
 	-DPYTHON_BINDINGS=ON \
 	-DLINK_PYTHON_LIBRARY=ON
 
 	make -j$(nproc) V=1
 }
 
-install() {
+package() {
 	make install DESTDIR="$DESTDIR"
+	rm -f $DESTDIR/usr/lib64/*.so*
 }
-
-

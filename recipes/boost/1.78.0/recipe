@@ -13,6 +13,6 @@ build() {
 	./b2 stage -j$(nproc) --prefix="$DESTDIR" threading=multi link=static
 }
 
-install() {
+package() {
         ./b2 install --prefix="$DESTDIR" threading=multi link=static
 }
