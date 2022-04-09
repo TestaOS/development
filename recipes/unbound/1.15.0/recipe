@@ -1,0 +1,6 @@
+NAME='unbound'
+VERSION='1.15.0'
+DIRECTORY='unbound-1.15.0'
+DEPENDENCIES='openssl-1.1.1n expat-2.4.7'
+FILENAME='unbound-1.15.0.tar.gz'
+SOURCE="https://nlnetlabs.nl/downloads/unbound/$FILENAME"

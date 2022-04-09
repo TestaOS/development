@@ -1,0 +1,14 @@
+NAME='p11-kit'
+VERSION='0.24.1'
+DIRECTORY='p11-kit-0.24.1'
+DEPENDENCIES='libtasn1-4.18.0 libffi-3.4.2'
+FILENAME='p11-kit-0.24.1.tar.xz'
+SOURCE="https://github.com/p11-glue/p11-kit/releases/download/0.24.1/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--without-trust-paths
+
+	make -j$(nproc) V=1
+}

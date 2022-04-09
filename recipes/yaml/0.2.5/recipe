@@ -1,0 +1,6 @@
+NAME='yaml'
+VERSION='0.2.5'
+DIRECTORY='yaml-0.2.5'
+DEPENDENCIES=''
+FILENAME='yaml-0.2.5.tar.gz'
+SOURCE="https://github.com/yaml/libyaml/releases/download/0.2.5/$FILENAME"

@@ -1,0 +1,6 @@
+NAME='libidn2'
+VERSION='2.3.2'
+DIRECTORY='libidn2-2.3.2'
+DEPENDENCIES=''
+FILENAME='libidn2-2.3.2.tar.gz'
+SOURCE="https://ftp.gnu.org/gnu/libidn/$FILENAME"

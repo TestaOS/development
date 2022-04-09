@@ -1,0 +1,12 @@
+NAME='flex'
+VERSION='2.6.4'
+DIRECTORY='flex-2.6.4'
+DEPENDENCIES=''
+FILENAME='flex-2.6.4.tar.gz'
+SOURCE="https://github.com/westes/flex/files/981163/$FILENAME"
+
+package() {
+	make DESTDIR="$DESTDIR" install
+
+	ln -s flex $DESTDIR/usr/bin/lex
+}

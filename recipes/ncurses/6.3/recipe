@@ -20,10 +20,14 @@ build() {
         --without-debug \
         --without-ada \
         --without-normal \
-        --enable-widec	
+	--with-termlib \
+        --enable-widec
+
+	make -j$(nproc) V=1
 }
 
 package() {
 	make DESTDIR="$DESTDIR" TIC_PATH=$(pwd)/build/progs/tic install
 	ln -s libncursesw.a /tmp/package/usr/lib/libncurses.a
+	ln -s libtinfow.a /tmp/package/usr/lib/libtinfo.a
 }

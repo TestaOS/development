@@ -1,0 +1,16 @@
+NAME='libxslt'
+VERSION='1.1.35'
+DIRECTORY='libxslt-v1.1.35-50af4e65da712ceb59f98a7feeeab2ddc3324ab9'
+DEPENDENCIES='libtool-2.4.6 libxml2-2.9.13'
+FILENAME='libxslt-1.1.35.tar.gz'
+SOURCE="https://gitlab.gnome.org/GNOME/libxslt/-/archive/v1.1.35/$FILENAME"
+
+build() {
+        ./autogen.sh \
+        --prefix=/usr \
+	--without-python \
+        --enable-static \
+        --disable-shared
+
+        make -j$(nproc) V=1
+}

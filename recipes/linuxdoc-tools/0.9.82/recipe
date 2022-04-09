@@ -1,0 +1,16 @@
+NAME='linuxdoc-tools'
+VERSION='0.9.82'
+DIRECTORY='linuxdoc-tools-0.9.82'
+DEPENDENCIES='opensp-1.5.2'
+FILENAME='linuxdoc-tools-0.9.82.tar.gz'
+SOURCE="https://mirrors.edge.kernel.org/debian/pool/main/l/linuxdoc-tools/linuxdoc-tools_0.9.82.orig.tar.gz"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--mandir=/usr/share/man \
+	--disable-docs \
+	--with-texdir=/usr/share/texmf-dist/tex/linuxdoc
+		
+	make -j$(nproc) V=1        
+}

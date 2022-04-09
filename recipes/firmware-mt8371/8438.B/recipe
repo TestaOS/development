@@ -1,0 +1,15 @@
+NAME='firmware-mt8371'
+VERSION='8438.B'
+DIRECTORY=''
+DEPENDENCIES=''
+FILENAME="firmware-mt8371-8438.B.tar.gz"
+SOURCE="https://chromium.googlesource.com/chromiumos/third_party/marvell/+archive/refs/heads/firmware-oak-8438.B.tar.gz"
+
+build() {
+	echo
+}
+
+package() {
+	mkdir -p $DESTDIR/lib/firmware/mrvl
+	cp -rv * $DESTDIR/lib/firmware/mrvl
+}

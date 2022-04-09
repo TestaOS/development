@@ -1,0 +1,27 @@
+NAME='brotli'
+VERSION='1.0.9'
+DIRECTORY='brotli-1.0.9'
+DEPENDENCIES=''
+FILENAME='brotli-1.0.9.tar.gz'
+SOURCE="https://github.com/google/brotli/archive/v1.0.9/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DBUILD_TESTING=OFF \
+	..
+		
+	make -j$(nproc) V=1        
+}
+
+package() {
+	make install DESTDIR="$DESTDIR"
+
+	rm $DESTDIR/usr/lib64/*.so*
+	mv $DESTDIR/usr/lib64/libbrotlicommon-static.a $DESTDIR/usr/lib64/libbrotlicommon.a
+	mv $DESTDIR/usr/lib64/libbrotlidec-static.a $DESTDIR/usr/lib64/libbrotlidec.a
+	mv $DESTDIR/usr/lib64/libbrotlienc-static.a $DESTDIR/usr/lib64/libbrotlienc.a
+}

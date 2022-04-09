@@ -1,0 +1,15 @@
+NAME='wireless-regdb'
+VERSION='2022-02-18'
+DIRECTORY=''
+DEPENDENCIES=''
+FILENAME='wireless-regdb-2022-02-18.tar.gz'
+SOURCE="https://kernel.googlesource.com/pub/scm/linux/kernel/git/sforshee/wireless-regdb/+archive/4dac44b3705239cd874205efc47fecef1fa25276.tar.gz"
+
+build() {
+	echo
+}
+
+package() {
+	mkdir -p $DESTDIR/lib/firmware
+	cp regulatory.db* $DESTDIR/lib/firmware
+}
