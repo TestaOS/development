@@ -1,0 +1,14 @@
+NAME='go'
+VERSION='1.18'
+DIRECTORY='go/src'
+DEPENDENCIES=''
+FILENAME='go-1.18.tar.gz'
+SOURCE="https://go.dev/dl/go1.18.src.tar.gz"
+
+build() {
+	./all.bash
+}
+
+package() {
+	echo
+}

@@ -6,28 +6,36 @@ FILENAME='ncurses-6.3.tar.gz'
 SOURCE="https://ftp.gnu.org/pub/gnu/ncurses/$FILENAME"
 
 build() {
-	mkdir build
-	cd build
-	../configure
+	# Build non-wide version
+	./configure \
+	--prefix=/usr \
+	--without-debug \
+	--without-manpages \
+	--enable-static \
+	--disable-shared \
+	--without-ada \
+	--enable-pc-files
 
-	make -j$(nproc) V=1 -C include
-	make -j$(nproc) V=1 -C progs tic
+	make -j$(nproc) V=1
 
-	cd ..
+	make DESTDIR="$DESTDIR" install
 
-	./configure --prefix=/usr \
-        --with-static \
+	make clean
+
+	# Build wide version
+	./configure \
+        --prefix=/usr \
         --without-debug \
+        --without-manpages \
+        --enable-static \
+        --disable-shared \
+	--enable-widec \
         --without-ada \
-        --without-normal \
-	--with-termlib \
-        --enable-widec
+        --enable-pc-files  
 
 	make -j$(nproc) V=1
 }
 
 package() {
-	make DESTDIR="$DESTDIR" TIC_PATH=$(pwd)/build/progs/tic install
-	ln -s libncursesw.a /tmp/package/usr/lib/libncurses.a
-	ln -s libtinfow.a /tmp/package/usr/lib/libtinfo.a
+	make DESTDIR="$DESTDIR" install
 }

@@ -16,7 +16,7 @@ packages='bison-3.8.2 busybox-1.35.0 flex-2.6.4 gcc-11.2.0 glibc-2.35 glibc-head
 for package in $packages
 do
 	echo "Installing $package"
-	tar -h -xf /opt/limelayer/packages/$package.tar.gz -C /tmp/sysroot/
+	tar -h -xf /opt/testaos/packages/$package.tar.gz -C /tmp/sysroot/
 done
 
 #Create docker image

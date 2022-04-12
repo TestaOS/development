@@ -1,0 +1,28 @@
+NAME='docker-cli'
+VERSION='20.10.14'
+DIRECTORY='cli-20.10.14'
+DEPENDENCIES='git-2.31.1'
+FILENAME='docker-cli-20.10.14.tar.gz'
+SOURCE="https://github.com/docker/cli/archive/refs/tags/v20.10.14.tar.gz"
+
+build() {
+	export GOPATH="$SRCDIR"
+	#export PATH="$GOPATH/bin:$PATH"
+	export CGO_CPPFLAGS="${CPPFLAGS}"
+	export CGO_CFLAGS="${CFLAGS}"
+	export CGO_CXXFLAGS="${CXXFLAGS}"
+	export CGO_LDFLAGS="${LDFLAGS}"
+	export GOFLAGS='-buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external'
+	export GO111MODULE=off
+	export DISABLE_WARN_OUTSIDE_CONTAINER=1
+
+	mkdir -p $DESTDIR
+	mkdir -p $SRCDIR/src/github.com/docker
+	ln -s $SRCDIR/cli-20.10.14 $SRCDIR/src/github.com/docker/cli
+
+	make binary
+}
+
+package() {
+	echo
+}

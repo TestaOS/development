@@ -1,0 +1,15 @@
+NAME='git'
+VERSION='2.31.1'
+DIRECTORY='git-2.31.1'
+DEPENDENCIES='python-3.10.3 zlib-1.2.11'
+FILENAME='git-2.31.1.tar.xz'
+SOURCE="https://www.kernel.org/pub/software/scm/git/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+        --with-gitconfig=/etc/gitconfig \
+        --with-python=python3
+
+	make -j$(nproc) V=1        
+}

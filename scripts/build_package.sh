@@ -12,7 +12,8 @@ PACKAGE=$1
 VERSION="${2:-stable}"
 
 #source $FILE
-RECIPE="/opt/recipes/$PACKAGE/$VERSION/recipe"
+ROOT="/opt/recipes/$PACKAGE/$VERSION"
+RECIPE="$ROOT/recipe"
 if [ ! -f $RECIPE ]; then
 	echo "Specified package does not exist"
 	exit 1;
@@ -35,8 +36,9 @@ for DEPENDENCY in $DEPENDENCIES; do
 	tar -h -xf "/opt/packages/$DEPENDENCY.tar.gz" -C /
 done
 
-mkdir -p /tmp/source
-cd /tmp/source
+SRCDIR=/tmp/source
+mkdir -p $SRCDIR
+cd $SRCDIR
 
 mkdir -p /opt/cache
 if [ ! -f "/opt/cache/$FILENAME" ]; then
