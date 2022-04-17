@@ -1,14 +1,11 @@
 NAME='gcc'
-VERSION='11.2.0'
+VERSION='11.2.0-minimal'
 DIRECTORY='gcc-11.2.0'
-DEPENDENCIES='gmp-6.2.1 mpfr-4.1.0 mpc-1.2.1 kernel-headers-5.10 make-4.3'
+DEPENDENCIES='gmp-6.2.1 mpfr-4.1.0 mpc-1.2.1'
 FILENAME='gcc-11.2.0.tar.xz'
 SOURCE="http://ftp.gwdg.de/pub/misc/gcc/releases/gcc-11.2.0/$FILENAME"
 
 build() {
-	# Patch to fix issue with gccgo
-	sed -i '9172s/.*/call = Expression::make_conditional(cond, zero, call, loc);/' gcc/go/gofrontend/expressions.cc
-
 	mkdir build
 	cd build
 
@@ -20,11 +17,7 @@ build() {
 	--enable-static \
 	--enable-lto \
 	--with-static-standard-libraries \
-	--enable-languages=all
-
-	#--disable-shared \
-	#-disable-libcc1 \
-	#--enable-libgcc \
+	--enable-languages=c,c++
 
 	make V=1
 }

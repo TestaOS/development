@@ -1,0 +1,15 @@
+NAME='libaio'
+VERSION='0.3.112'
+DIRECTORY='libaio-0.3.112'
+DEPENDENCIES=''
+FILENAME='libaio-0.3.112.tar.xz'
+SOURCE="https://ftp.debian.org/debian/pool/main/liba/libaio/libaio_0.3.112.orig.tar.xz"
+
+build() {
+	make -j$(nproc) V=1
+}
+
+package() {
+	make install DESTDIR="$DESTDIR"
+	rm $DESTDIR/usr/lib/libaio.so*
+}

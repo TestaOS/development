@@ -1,0 +1,15 @@
+NAME='containerd'
+VERSION='1.6.2'
+DIRECTORY='containerd-1.6.2'
+DEPENDENCIES='git-2.31.1'
+FILENAME='containerd-1.6.2.tar.gz'
+SOURCE="https://github.com/containerd/containerd/archive/refs/tags/v1.6.2.tar.gz"
+
+build() {
+	export GOFLAGS="-trimpath -mod=readonly -modcacherw"
+	make VERSION=v1.6.2 GO_BUILD_FLAGS="-trimpath -mod=readonly -modcacherw" GO_GCFLAGS="" EXTRA_LDFLAGS="-buildid="
+}
+
+package() {
+	make PREFIX=/usr DESTDIR="$DESTDIR" install
+}

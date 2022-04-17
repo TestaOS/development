@@ -13,7 +13,7 @@ build() {
 	--prefix=/usr \
 	--openssldir=/usr/etc/ssl \
 	--libdir=lib \
-	linux-aarch64
+	linux-$(uname -m)
 		
 	make -j$(nproc) V=1        
 }

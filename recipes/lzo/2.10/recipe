@@ -1,0 +1,6 @@
+NAME='lzo'
+VERSION='2.10'
+DIRECTORY='lzo-2.10'
+DEPENDENCIES=''
+FILENAME='lzo-2.10.tar.gz'
+SOURCE="https://www.oberhumer.com/opensource/lzo/download/$FILENAME"

@@ -1,0 +1,6 @@
+NAME='gawk'
+VERSION='5.1.1'
+DIRECTORY='gawk-5.1.1'
+DEPENDENCIES=''
+FILENAME='gawk-5.1.1.tar.xz'
+SOURCE="https://ftp.gnu.org/gnu/gawk/$FILENAME"

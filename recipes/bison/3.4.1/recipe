@@ -1,0 +1,15 @@
+NAME='bison'
+VERSION='3.4.1'
+DIRECTORY='bison-3.4.1'
+DEPENDENCIES='m4-1.4.19 perl-5.34.1'
+FILENAME='bison-3.4.1.tar.xz'
+SOURCE="http://ftp.twaren.net/Unix/GNU/gnu/bison/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--disable-yacc \
+	--disable-nls
+		
+	make -j$(nproc) V=1        
+}

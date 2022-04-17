@@ -1,0 +1,18 @@
+NAME='make'
+VERSION='4.3'
+DIRECTORY='make-4.3'
+DEPENDENCIES=''
+FILENAME='make-4.3.tar.gz'
+SOURCE="http://ftp.gnu.org/gnu/make/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--disable-dependency-tracking
+		
+	sh build.sh
+}
+
+package() {
+	./make install DESTDIR="$DESTDIR"
+}

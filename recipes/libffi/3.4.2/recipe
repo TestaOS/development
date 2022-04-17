@@ -1,0 +1,6 @@
+NAME='libffi'
+VERSION='3.4.2'
+DIRECTORY='libffi-3.4.2'
+DEPENDENCIES=''
+FILENAME='libffi-3.4.2.tar.gz'
+SOURCE="https://github.com/libffi/libffi/releases/download/v3.4.2/$FILENAME"

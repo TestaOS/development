@@ -6,9 +6,18 @@ FILENAME='go-1.18.tar.gz'
 SOURCE="https://go.dev/dl/go1.18.src.tar.gz"
 
 build() {
-	./all.bash
+	export GOROOT_FINAL=/usr/lib/go
+	export GOROOT_BOOTSTRAP=/usr/lib/go
+
+	./make.bash -v
 }
 
 package() {
-	echo
+	mkdir -p $DESTDIR/usr/bin
+
+	mkdir -p $DESTDIR/usr/lib
+	mv ../../go $DESTDIR/usr/lib/
+
+	ln -sf /usr/lib/go/bin/go "$DESTDIR/usr/bin/go"
+	ln -sf /usr/lib/go/bin/gofmt "$DESTDIR/usr/bin/gofmt"
 }

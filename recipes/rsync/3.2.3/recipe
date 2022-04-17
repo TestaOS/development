@@ -1,0 +1,17 @@
+NAME='rsync'
+VERSION='3.2.3'
+DIRECTORY='rsync-3.2.3'
+DEPENDENCIES='zlib-1.2.11'
+FILENAME='rsync-3.2.3.tar.gz'
+SOURCE="https://www.samba.org/ftp/rsync/src/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+        --disable-lz4 \
+        --disable-xxhash \
+	--disable-zstd \
+        --without-included-zlib
+
+	make -j$(nproc) V=1        
+}

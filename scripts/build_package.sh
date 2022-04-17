@@ -1,11 +1,37 @@
 #!/bin/sh
 set -e
-#THIS SCRIPT SHOULD BE RUN INSIDE THE BUIILD DOCKER CONTAINER!
+#THIS SCRIPT SHOULD BE RUN INSIDE THE BUILD DOCKER CONTAINER!
 
 #Optimize for maximum binary speed and strip binary for minimal size
 export CFLAGS='-O3 -s -w -fPIC'
 export CXXFLAGS='-O3 -s -w -fPIC'
 export LDFLAGS='-s -w'
+
+#Functions
+
+#Download and unpack source code
+download() {
+	if [[ $1 == git+* ]]; then
+
+		COMMIT="${1##*#}"
+		GIT="${1:4}"
+		GIT="${GIT%%#*}"
+
+		git clone -n $GIT $SRCDIR
+		
+
+		exit
+
+	else
+		FILE="${2:-$(mktemp)}"
+
+		echo 'Downloading source...'
+		wget -O "$FILE" "$1"
+
+        	echo 'Unpacking source...'
+        	tar xf "$FILE" -C $SRCDIR
+	fi
+}
 
 #Read package build file
 PACKAGE=$1
@@ -22,7 +48,7 @@ fi
 . "$RECIPE"
 
 echo "Building package $PACKAGE-$VERSION"
-DESTDIR=/tmp/package
+DESTDIR='/tmp/package'
 rm -rf "$DESTDIR"
 
 #Fetch dependencies
@@ -36,23 +62,36 @@ for DEPENDENCY in $DEPENDENCIES; do
 	tar -h -xf "/opt/packages/$DEPENDENCY.tar.gz" -C /
 done
 
-SRCDIR=/tmp/source
+CACHEDIR='/opt/cache'
+SRCDIR='/tmp/source'
+rm -rf "$SRCDIR"
 mkdir -p $SRCDIR
-cd $SRCDIR
 
-mkdir -p /opt/cache
-if [ ! -f "/opt/cache/$FILENAME" ]; then
-	echo 'Downloading source...'
-	wget -O "/opt/cache/$FILENAME" "$SOURCE"
+mkdir -p $CACHEDIR
+if [ ! -f "$CACHEDIR/$FILENAME" ]; then
+
+	#Check if source is an array
+	if [ "${#SOURCE[@]}" -gt "1" ]; then
+
+		for DOWNLOAD in "${SOURCE[@]}"; do
+			download $DOWNLOAD
+		done
+	else
+		download $SOURCE "$CACHEDIR/$FILENAME"
+	fi
+else
+	echo 'Unpacking source...'
+	tar xf "$CACHEDIR/$FILENAME" -C $SRCDIR
 fi
 
-echo 'Unpacking source...'
-tar xf "/opt/cache/$FILENAME" -C /tmp/source
+#If cache does not exit, pack source dir
+if [ ! -f "$CACHEDIR/$FILENAME" ]; then
+	echo 'Saving source to cache...'
+	tar zcf "$CACHEDIR/$FILENAME" -C $SRCDIR .
+fi
 
 #Run build function
-if [ ! -z "$DIRECTORY" ]; then
-	cd "$DIRECTORY"
-fi
+cd "$SRCDIR/$DIRECTORY"
 
 if type 'build' 2>/dev/null | grep -q 'function'; then
 	build
@@ -66,6 +105,8 @@ else
 fi
 
 #Run package function
+cd "$SRCDIR/$DIRECTORY"
+
 if type 'package' 2>/dev/null | grep -q 'function'; then
 	package
 else
@@ -79,6 +120,7 @@ if [ ! -d "$DESTDIR" ]; then
 fi
 
 cd "$DESTDIR"
+mkdir -p /opt/packages
 echo 'Compressing package...'
 tar zcf "/opt/packages/$PACKAGE-$VERSION.tar.gz" .
 

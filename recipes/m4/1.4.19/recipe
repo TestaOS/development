@@ -1,0 +1,13 @@
+NAME='m4'
+VERSION='1.4.19'
+DIRECTORY='m4-1.4.19'
+DEPENDENCIES='make-4.3'
+FILENAME='m4-1.4.19.tar.xz'
+SOURCE="https://ftp.gnu.org/gnu/m4/$FILENAME"
+
+build() {
+	./configure \
+        --prefix=/usr
+
+        make -j$(nproc) V=1
+}

@@ -1,17 +1,20 @@
 NAME='curl'
 VERSION='7.65.3'
 DIRECTORY='curl-7.65.3'
-DEPENDENCIES='perl-5.34.1'
+DEPENDENCIES='perl-5.34.1 gnutls-3.7.4 libidn2-2.3.2 nettle-3.7.3 libtasn1-4.18.0 p11-kit-0.24.1 zlib-1.2.11'
 FILENAME='curl-7.65.3.tar.xz'
 SOURCE="https://curl.haxx.se/download/$FILENAME"
 
 build() {
+	CPPFLAGS="$CPPFLAGS $(pkg-config gnutls --cflags)" \
+	LIBS="$LIBS $(pkg-config gnutls --libs)" \
 	./configure \
 	--prefix=/usr \
 	--enable-static \
 	--disable-shared \
+	--with-gnutls \
 	--enable-threaded-resolver \
 	--with-ca-fallback
 		
-	make -j$(nproc) V=1        
+	make -j$(nproc) V=1
 }

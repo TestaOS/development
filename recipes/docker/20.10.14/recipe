@@ -1,0 +1,45 @@
+NAME='docker'
+VERSION='20.10.14'
+DIRECTORY=''
+#DEPENDENCIES='git-2.31.1 go-1.18 lvm2-2.3.15 btrfs-progs-5.16.2'
+FILENAME='docker-20.10.14.tar.gz'
+SOURCE=(
+        'git+https://github.com/docker/cli.git#a224086349'
+        'https://github.com/moby/moby/archive/refs/tags/v20.10.14.tar.gz'
+)
+
+build() {
+	exit
+
+	export GOPATH="$SRCDIR"
+	export PATH="$GOPATH/bin:$PATH"
+	export CGO_CPPFLAGS="${CPPFLAGS}"
+	export CGO_CFLAGS="${CFLAGS}"
+	export CGO_CXXFLAGS="${CXXFLAGS}"
+	export CGO_LDFLAGS="${LDFLAGS}"
+	export GOFLAGS='-buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external'
+	export GO111MODULE=off
+	export DISABLE_WARN_OUTSIDE_CONTAINER=1
+
+	mkdir -p $SRCDIR/src/github.com/docker
+
+	# Docker cli
+	ln -s $SRCDIR/cli-20.10.14 $SRCDIR/src/github.com/docker/cli
+
+	cd $SRCDIR/cli-20.10.14
+	make dynbinary
+
+	# Docker deamon
+        ln -s $SRCDIR/moby-20.10.14 $SRCDIR/src/github.com/docker/docker
+
+        cd $SRCDIR/moby-20.10.14
+        DOCKER_BUILDTAGS='seccomp journald apparmor' VERSION='20.10.14' DOCKER_GITCOMMIT='87a90dc' hack/make.sh binary
+}
+
+package() {
+	# Docker cli
+	install -Dm755 cli-20.10.14/build/docker "$DESTDIR/usr/bin/docker"
+
+	# Docker daemon
+	install -Dm755 moby-20.10.14/bundles/binary-daemon/dockerd "$DESTDIR/usr/bin/dockerd"
+}

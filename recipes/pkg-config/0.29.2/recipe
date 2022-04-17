@@ -1,0 +1,21 @@
+NAME='pkg-config'
+VERSION='0.29.2'
+DIRECTORY='pkg-config-0.29.2'
+DEPENDENCIES=''
+FILENAME='pkg-config-0.29.2.tar.gz'
+SOURCE="http://pkgconfig.freedesktop.org/releases/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--with-internal-glib \
+	--disable-host-tool \
+	--enable-static \
+        --disable-shared \
+	glib_cv_stack_grows=yes \
+	glib_cv_uscore=no \
+	ac_cv_func_posix_getpwuid_r=yes \
+	ac_cv_func_posix_getgrgid_r=yes
+		
+	make -j$(nproc) V=1        
+}

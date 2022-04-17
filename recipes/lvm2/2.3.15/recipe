@@ -1,0 +1,21 @@
+NAME='lvm2'
+VERSION='2.3.15'
+DIRECTORY='LVM2.2.03.15'
+DEPENDENCIES='libaio-0.3.112'
+FILENAME='lvm2-2.3.15.tar.gz'
+SOURCE="https://sourceware.org/ftp/lvm2/LVM2.2.03.15.tgz"
+
+build() {
+	./configure \
+	--prefix=/usr \
+        --enable-pkgconfig \
+	--enable-static_link \
+	--disable-udev-systemd-background-jobs
+
+	make -j$(nproc) V=1        
+}
+
+package() {
+	make install DESTDIR="$DESTDIR"
+	rm $DESTDIR/usr/lib/libdevmapper.so*
+}

@@ -1,0 +1,14 @@
+NAME='kernel-headers'
+VERSION='5.10'
+DIRECTORY='linux-5.10.110'
+DEPENDENCIES='flex-2.6.4 rsync-3.2.3'
+FILENAME='linux-5.10.110.tar.xz'
+SOURCE="https://cdn.kernel.org/pub/linux/kernel/v5.x/$FILENAME"
+
+build() {
+	make defconfig
+}
+
+package() {
+	make headers_install INSTALL_HDR_PATH=$DESTDIR/usr
+}
