@@ -17,9 +17,9 @@ build() {
 	--with-fp \
 	--without-cvs \
 	--without-gd \
+	--enable-shared \
 	--enable-kernel=5.10.0 \
 	--enable-stack-protector=strong \
-	--enable-shared \
 	--enable-obsolete-rpc \
 	--disable-profile \
 	--disable-debug \

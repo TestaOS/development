@@ -1,0 +1,6 @@
+NAME='diffutils'
+VERSION='3.8'
+DIRECTORY='diffutils-3.8'
+DEPENDENCIES=''
+FILENAME='diffutils-3.8.tar.xz'
+SOURCE="http://ftp.gnu.org/gnu/diffutils/$FILENAME"

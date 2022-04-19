@@ -1,0 +1,24 @@
+NAME='elfutils'
+VERSION='0.186'
+DIRECTORY='elfutils-0.186'
+DEPENDENCIES='zlib-1.2.11'
+FILENAME='elfutils-0.186.tar.bz2'
+SOURCE="https://sourceware.org/elfutils/ftp/0.186/$FILENAME"
+
+build() {
+	BUILD_STATIC=true \
+	./configure \
+	--prefix=/usr \
+	--disable-debuginfod \
+	--disable-libdebuginfod \
+	--enable-gcov \
+	--libdir=/usr/lib
+
+	make -j$(nproc) V=1
+}
+
+package() {
+	make install DESTDIR="$DESTDIR"
+
+	#rm $DESTDIR/usr/lib/*.so*
+}

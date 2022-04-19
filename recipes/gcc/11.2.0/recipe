@@ -18,18 +18,18 @@ build() {
 	--disable-bootstrap \
 	--disable-multilib \
 	--enable-static \
+	--enable-libgcc \
 	--enable-lto \
 	--with-static-standard-libraries \
 	--enable-languages=all
-
-	#--disable-shared \
-	#-disable-libcc1 \
-	#--enable-libgcc \
 
 	make V=1
 }
 
 package() {
-	make DESTDIR="$DESTDIR" install-strip
+	cd build
+	make install-strip DESTDIR="$DESTDIR"
 	ln -s gcc "$DESTDIR/usr/bin/cc"
+
+	rm $DESTDIR/usr/lib64/libstdc++.so*
 }

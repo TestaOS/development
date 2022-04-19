@@ -11,8 +11,9 @@ build() {
 	--disable-shared \
 	--enable-static \
         --disable-guile \
-        --disable-rpath \
 	--with-included-unistring
+
+	#--disable-rpath \
                 
         make -j$(nproc) V=1
 }

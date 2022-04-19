@@ -17,11 +17,9 @@ download() {
 		GIT="${1:4}"
 		GIT="${GIT%%#*}"
 
-		git clone -n $GIT $SRCDIR
-		
-
-		exit
-
+		git clone -n $GIT "$SRCDIR/$COMMIT"
+		cd "$SRCDIR/$COMMIT"
+		git checkout $COMMIT
 	else
 		FILE="${2:-$(mktemp)}"
 
