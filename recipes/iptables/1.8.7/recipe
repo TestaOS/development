@@ -1,0 +1,17 @@
+NAME='iptables'
+VERSION='1.8.7'
+DIRECTORY='iptables-1.8.7'
+DEPENDENCIES=''
+FILENAME='iptables-1.8.7.tar.bz2'
+SOURCE="http://www.netfilter.org/projects/iptables/files/$FILENAME"
+
+build() {
+
+	./configure \
+        --prefix=/usr \
+        --enable-static \
+	--disable-nftables \
+        --disable-shared
+
+        make -j$(nproc) V=1
+}

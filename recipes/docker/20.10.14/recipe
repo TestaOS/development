@@ -6,22 +6,28 @@ FILENAME='docker-20.10.14.tar.gz'
 SOURCE=(
         'git+https://github.com/docker/cli.git#a224086349'
         'git+https://github.com/moby/moby.git#87a90dc'
+	'git+https://github.com/krallin/tini.git#de40ad0'
 )
 
 build() {
+	# Docker-init
+	mkdir -p $SRCDIR/github.com/krallin
+
+	ln -s $SRCDIR/de40ad0 $SRCDIR/github.com/krallin/tini
+	cd $SRCDIR/de40ad0
+	cmake .
+
+	make -j4 V=1 tini-static
+
+	#Docker cli
 	export GOPATH="$SRCDIR"
 	export PATH="$GOPATH/bin:$PATH"
-	export CGO_CPPFLAGS="${CPPFLAGS}"
-	export CGO_CFLAGS="${CFLAGS}"
-	export CGO_CXXFLAGS="${CXXFLAGS}"
-	export CGO_LDFLAGS="${LDFLAGS}"
 	export GOFLAGS='-buildmode=pie -trimpath -mod=readonly -modcacherw -ldflags=-linkmode=external'
 	export GO111MODULE=off
 	export DISABLE_WARN_OUTSIDE_CONTAINER=1
 
 	mkdir -p $SRCDIR/src/github.com/docker
 
-	# Docker cli
 	ln -s $SRCDIR/a224086349 $SRCDIR/src/github.com/docker/cli
 
 	cd $SRCDIR/a224086349
@@ -35,6 +41,9 @@ build() {
 }
 
 package() {
+	# Docker-init
+	install -Dm755 de40ad0/tini-static "$DESTDIR/usr/bin/docker-init"
+
 	# Docker cli
 	install -Dm755 a224086349/build/docker "$DESTDIR/usr/bin/docker"
 

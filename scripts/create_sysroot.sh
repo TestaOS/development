@@ -6,7 +6,7 @@ rm -rf /tmp/sysroot
 mkdir /tmp/sysroot
 
 #Install needed packages for sysroot
-packages='sysroot-base-1.0 busybox-1.35.0 glibc-2.35 linux-kernel-mt8371-5.15 iw-5.0.1 wpa-supplicant-2.10'
+packages='sysroot-base-1.0 busybox-1.35.0 glibc-2.35 linux-kernel-mt8371-5.15 iw-5.0.1 wpa-supplicant-2.10 containerd-1.6.2 docker-20.10.14 bash-5.1.16 iptables-1.8.7 runc-1.1.1'
 
 for package in $packages
 do

@@ -3,9 +3,14 @@ set -e
 #THIS SCRIPT SHOULD BE RUN INSIDE THE BUILD DOCKER CONTAINER!
 
 #Optimize for maximum binary speed and strip binary for minimal size
-export CFLAGS='-O3 -s -w -fPIC'
-export CXXFLAGS='-O3 -s -w -fPIC'
+export CFLAGS='-O3 -s -w -fPIC -static-libstdc++ -static-libgcc'
+export CXXFLAGS='-O3 -s -w -fPIC -static-libstdc++ -static-libgcc'
 export LDFLAGS='-s -w'
+
+export CGO_CPPFLAGS="${CXXFLAGS}"
+export CGO_CFLAGS="${CFLAGS}"
+export CGO_CXXFLAGS="${CXXFLAGS}"
+export CGO_LDFLAGS="${LDFLAGS}"
 
 #Functions
 

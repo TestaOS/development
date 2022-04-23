@@ -1,0 +1,20 @@
+NAME='runc'
+VERSION='1.1.1'
+DIRECTORY='52de29d'
+DEPENDENCIES='libseccomp-2.5.3 go-1.18'
+FILENAME='runc-1.1.1.tar.gz'
+SOURCE="git+https://github.com/opencontainers/runc.git#52de29d"
+
+build() {
+	mkdir -p $SRCDIR/src/github.com/opencontainers
+	ln -s $SRCDIR/52de29d $SRCDIR/src/github.com/opencontainers/runc
+
+	export GOPATH="$SRCDIR"
+	export BUILDTAGS='seccomp apparmor'
+	export GOFLAGS="-trimpath -mod=readonly -modcacherw"
+	make -j$(nproc) V=1 runc
+}
+
+package() {
+	make install DESTDIR="$DESTDIR" PREFIX=/usr
+}
