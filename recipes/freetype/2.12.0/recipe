@@ -1,0 +1,16 @@
+NAME='freetype'
+VERSION='2.12.0'
+DIRECTORY='freetype-2.12.0'
+DEPENDENCIES='zlib-1.2.11'
+FILENAME='freetype-2.12.0.tar.xz'
+SOURCE="https://downloads.sourceforge.net/freetype/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--enable-static \
+	--disable-shared \
+	--enable-freetype-config
+
+	make -j$(nproc) V=1
+}

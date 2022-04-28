@@ -1,0 +1,14 @@
+NAME='util-macros'
+VERSION='1.19.3'
+DIRECTORY='util-macros-1.19.3'
+DEPENDENCIES=''
+FILENAME='util-macros-1.19.3.tar.bz2'
+SOURCE="https://www.x.org/pub/individual/util/$FILENAME"
+
+package() {
+	make install DESTDIR="$DESTDIR"
+
+	mkdir -p "$DESTDIR/usr/lib"
+
+	mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib"
+}

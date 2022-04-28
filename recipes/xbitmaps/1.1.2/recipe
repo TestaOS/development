@@ -1,0 +1,6 @@
+NAME='xbitmaps'
+VERSION='1.1.2'
+DIRECTORY='xbitmaps-1.1.2'
+DEPENDENCIES='util-macros-1.19.3'
+FILENAME='xbitmaps-1.1.2.tar.bz2'
+SOURCE="https://www.x.org/pub/individual/data/$FILENAME"

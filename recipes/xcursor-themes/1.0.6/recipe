@@ -1,0 +1,6 @@
+NAME='xcursor-themes'
+VERSION='1.0.6'
+DIRECTORY='xcursor-themes-1.0.6'
+DEPENDENCIES='util-macros-1.19.3 xcursorgen-1.0.7 libxcursor-1.2.1 xorgproto-2022.1 libx11-1.7.5 libxcb-1.14 libxau-1.0.9 libxdmcp-1.1.3 libxrender-0.9.10 libxfixes-6.0.0'
+FILENAME='xcursor-themes-1.0.6.tar.bz2'
+SOURCE="https://www.x.org/pub/individual/data/$FILENAME"

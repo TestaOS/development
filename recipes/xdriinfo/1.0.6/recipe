@@ -1,0 +1,14 @@
+NAME='xdriinfo'
+VERSION='1.0.6'
+DIRECTORY='xdriinfo-1.0.6'
+DEPENDENCIES='util-macros-1.19.3 xorgproto-2022.1 libx11-1.7.5 libxcb-1.14 libxau-1.0.9 libxdmcp-1.1.3 mesa-21.3.7 libxext-1.3.4 libxshmfence-1.3 libdrm-2.4.110 zlib-1.2.11 libunwind-1.6.2 expat-2.4.7 libxfixes-6.0.0 libxxf86vm-1.1.4'
+FILENAME='xdriinfo-1.0.6.tar.bz2'
+SOURCE="https://www.x.org/pub/individual/app/$FILENAME"
+
+build() {
+	LIBS="$LIBS $(pkg-config --static --libs gl) $(pkg-config --libs --static xext) -l:libstdc++.a" \
+	./configure \
+        --prefix=/usr
+
+        make -j$(nproc) V=1
+}

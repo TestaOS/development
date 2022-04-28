@@ -1,0 +1,148 @@
++++ ./src/glx/meson.build
+@@ -140,7 +140,7 @@
+   ],
+ )
+ 
+-libgl = shared_library(
++libgl = static_library(
+   gl_lib_name,
+   [],
+   link_with : [libglapi_static, libglapi],
+@@ -151,8 +151,6 @@
+     dep_x11_xcb, dep_xcb_dri2, dep_xext, dep_xfixes, dep_xxf86vm,
+     dep_xcb_shm, extra_deps_libgl,
+   ],
+-  version : gl_lib_version,
+-  darwin_versions : '4.0.0',
+   install : true,
+ )
+ 
++++ ./src/mapi/es1api/meson.build
+@@ -32,7 +32,7 @@
+   _es1_c_args += ['-D_GDI32_', '-DBUILD_GL32']
+ endif
+ 
+-libglesv1_cm = shared_library(
++libglesv1_cm = static_library(
+   'GLESv1_CM' + get_option('gles-lib-suffix'),
+   ['../entry.c', es1_glapi_mapi_tmp_h],
+   c_args : [
+@@ -47,9 +47,6 @@
+   include_directories : [inc_src, inc_include, inc_mapi],
+   link_with : libglapi,
+   dependencies : [dep_thread, dep_libdrm, dep_m, dep_dl],
+-  soversion : host_machine.system() == 'windows' ? '' : '1',
+-  version : '1.1.0',
+-  darwin_versions  : '3.0.0',
+   name_prefix : 'lib',
+   install : true,
+ )
++++ ./src/mapi/es2api/meson.build
+@@ -32,7 +32,7 @@
+   _es2_c_args += ['-D_GDI32_', '-DBUILD_GL32']
+ endif
+ 
+-libgles2 = shared_library(
++libgles2 = static_library(
+   'GLESv2' + get_option('gles-lib-suffix'),
+   ['../entry.c', es2_glapi_mapi_tmp_h],
+   c_args : [
+@@ -47,9 +47,6 @@
+   include_directories : [inc_src, inc_include, inc_mapi],
+   link_with : libglapi,
+   dependencies : [dep_thread, dep_libdrm, dep_m, dep_dl],
+-  soversion : host_machine.system() == 'windows' ? '' : '2',
+-  version : '2.0.0',
+-  darwin_versions : '3.0.0',
+   name_prefix : 'lib',
+   install : true,
+ )
++++ ./src/gbm/meson.build
+@@ -45,7 +45,7 @@
+   incs_gbm += inc_wayland_drm
+ endif
+ 
+-libgbm = shared_library(
++libgbm = static_library(
+   'gbm',
+   files_gbm,
+   include_directories : incs_gbm,
+@@ -54,7 +54,6 @@
+   link_with : libloader,
+   dependencies : [deps_gbm, dep_dl, dep_thread, idep_mesautil, idep_xmlconfig],
+   gnu_symbol_visibility : 'hidden',
+-  version : '1.0.0',
+   install : true,
+ )
+ 
++++ ./src/mapi/shared-glapi/meson.build
+@@ -41,7 +41,7 @@
+   _glapi_c_args += ['-D_GLAPI_DLL_EXPORTS']
+ endif
+ 
+-libglapi = shared_library(
++libglapi = static_library(
+   'glapi',
+   [files_mapi_glapi, files_mapi_util, shared_glapi_mapi_tmp_h],
+   c_args : [
+@@ -55,8 +55,6 @@
+   link_args : [ld_args_gc_sections],
+   include_directories : [inc_src, inc_include, inc_mapi],
+   dependencies : [dep_thread, dep_selinux],
+-  soversion : host_machine.system() == 'windows' ? '' : '0',
+-  version : '0.0.0',
+   name_prefix : 'lib',
+   install : true,
+ )
++++ ./src/gallium/targets/xa/meson.build
+@@ -32,7 +32,7 @@
+ 
+ _xa_version = '.'.join(xa_version)
+ 
+-libxatracker = shared_library(
++libxatracker = static_library(
+   'xatracker',
+   'target.c',
+   gnu_symbol_visibility : 'hidden',
+@@ -50,7 +50,6 @@
+     idep_mesautil,
+     driver_nouveau, driver_i915, driver_svga, driver_freedreno,
+   ],
+-  version : _xa_version,
+   install : true,
+ )
+ 
++++ ./src/gallium/targets/lavapipe/meson.build
+@@ -5,10 +5,9 @@
+   vulkan_lvp_def = 'vulkan_lvp.def'
+ endif
+ 
+-libvulkan_lvp = shared_library(
++libvulkan_lvp = static_library(
+   'vulkan_lvp',
+   [ 'target.c' ],
+-  vs_module_defs : vulkan_lvp_def,
+   include_directories : [ inc_src, inc_util, inc_include, inc_gallium, inc_gallium_aux, inc_gallium_winsys, inc_gallium_drivers ],
+   link_whole : [ liblavapipe_st ],
+   link_with : [libpipe_loader_static, libgallium, libwsw, libswdri, libws_null, libswkmsdri ],
++++ ./src/egl/meson.build
+@@ -175,7 +175,7 @@
+   )
+ endif
+ 
+-libegl = shared_library(
++libegl = static_library(
+   egl_lib_name,
+   files_egl,
+   c_args : [
+@@ -189,10 +189,7 @@
+   link_args : [ld_args_bsymbolic, ld_args_gc_sections],
+   dependencies : [deps_for_egl, dep_dl, dep_libdrm, dep_clock, dep_thread, idep_mesautil],
+   install : true,
+-  version : egl_lib_version,
+-  soversion : egl_lib_soversion,
+   name_prefix : 'lib', # even on windows
+-  vs_module_defs : 'main/egl.def'
+ )
+ 
+ if not with_glvnd

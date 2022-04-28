@@ -1,0 +1,14 @@
+NAME='xcb-proto'
+VERSION='1.14.1'
+DIRECTORY='xcb-proto-1.14.1'
+DEPENDENCIES='python-3.10.3'
+FILENAME='xcb-proto-1.14.1.tar.xz'
+SOURCE="https://xorg.freedesktop.org/archive/individual/proto/$FILENAME"
+
+build() {
+	PYTHON=python3
+	./configure \
+	--prefix=/usr
+
+	make -j$(nproc) V=1
+}

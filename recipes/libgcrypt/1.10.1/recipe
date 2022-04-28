@@ -1,0 +1,6 @@
+NAME='libgcrypt'
+VERSION='1.10.1'
+DIRECTORY='libgcrypt-1.10.1'
+DEPENDENCIES='libgpg-error-1.45'
+FILENAME='libgcrypt-1.10.1.tar.bz2'
+SOURCE="https://www.gnupg.org/ftp/gcrypt/libgcrypt/$FILENAME"

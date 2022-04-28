@@ -1,0 +1,18 @@
+NAME='openssh'
+VERSION='9.0p1'
+DIRECTORY='openssh-9.0p1'
+DEPENDENCIES='zlib-1.2.11 openssl-1.1.1n'
+FILENAME='openssh-9.0p1.tar.gz'
+SOURCE="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc/ssh \
+	--with-privsep-path=/var/lib/sshd \
+	--with-default-path=/usr/bin \
+	--with-superuser-path=/usr/bin \
+	--with-pid-dir=/var/run
+
+	make -j$(nproc) V=1
+}

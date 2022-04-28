@@ -29,7 +29,7 @@ download() {
 		FILE="${2:-$(mktemp)}"
 
 		echo 'Downloading source...'
-		wget -O "$FILE" "$1"
+		wget --no-check-certificate -O "$FILE" "$1"
 
         	echo 'Unpacking source...'
         	tar xf "$FILE" -C $SRCDIR

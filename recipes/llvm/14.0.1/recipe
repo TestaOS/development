@@ -1,0 +1,32 @@
+NAME='llvm'
+VERSION='14.0.1'
+DIRECTORY='llvm-14.0.1.src'
+DEPENDENCIES='ninja-1.10.2 python-3.10.3'
+FILENAME='llvm-14.0.1.tar.xz'
+SOURCE="https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.1/llvm-14.0.1.src.tar.xz"
+
+build() {
+	mkdir build
+	cd build
+
+	cmake \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DLLVM_ENABLE_FFI=ON \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DLLVM_BUILD_LLVM_DYLIB=ON \
+	-DLLVM_LINK_LLVM_DYLIB=ON \
+	-DLLVM_ENABLE_RTTI=ON \
+	-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;BPF" \
+	-DLLVM_BINUTILS_INCDIR=/usr/include \
+	-DLLVM_INCLUDE_BENCHMARKS=OFF \
+	-Wno-dev \
+	-G Ninja \
+	..
+
+	ninja -j2
+}
+
+package() {
+	cd build
+	DESTDIR="$DESTDIR" ninja install
+}

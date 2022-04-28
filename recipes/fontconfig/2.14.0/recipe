@@ -1,0 +1,18 @@
+NAME='fontconfig-2.14.0'
+VERSION='2.14.0'
+DIRECTORY='fontconfig-2.14.0'
+DEPENDENCIES='freetype-2.12.0 python-3.10.3 gperf-3.1 expat-2.4.7'
+FILENAME='fontconfig-2.14.0.tar.xz'
+SOURCE="https://www.freedesktop.org/software/fontconfig/release/$FILENAME"
+
+build() {
+	./configure \
+	--prefix=/usr \
+	--enable-static \
+	--disable-shared \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--disable-docs
+
+	make -j$(nproc) V=1
+}

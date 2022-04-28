@@ -6,9 +6,8 @@ FILENAME='gcc-11.2.0.tar.xz'
 SOURCE="http://ftp.gwdg.de/pub/misc/gcc/releases/gcc-11.2.0/$FILENAME"
 
 build() {
-	# Patch to fix issue with gccgo
-	sed -i '9172s/.*/call = Expression::make_conditional(cond, zero, call, loc);/' gcc/go/gofrontend/expressions.cc
-
+	patch -p0 < "$ROOT/fixes.patch"
+	
 	mkdir build
 	cd build
 
@@ -30,6 +29,4 @@ package() {
 	cd build
 	make install-strip DESTDIR="$DESTDIR"
 	ln -s gcc "$DESTDIR/usr/bin/cc"
-
-	#rm $DESTDIR/usr/lib64/libstdc++.so*
 }

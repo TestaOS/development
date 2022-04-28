@@ -1,0 +1,6 @@
+NAME='libgpg-error'
+VERSION='1.45'
+DIRECTORY='libgpg-error-1.45'
+DEPENDENCIES=''
+FILENAME='libgpg-error-1.45.tar.bz2'
+SOURCE="https://www.gnupg.org/ftp/gcrypt/libgpg-error/$FILENAME"

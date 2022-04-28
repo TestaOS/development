@@ -1,0 +1,43 @@
++++ ./gcc/go/gofrontend/expressions.cc
+@@ -9169,7 +9169,7 @@
+               ref2 = Expression::make_cast(uint_type, ref2, loc);
+               cond = Expression::make_binary(OPERATOR_GT, ref, ref2, loc);
+               zero = Expression::make_integer_ul(0, int_type, loc);
+-              call = Expression::make_conditional(cond, call, zero, loc);
++              call = Expression::make_conditional(cond, zero, call, loc);
+             }
+         }
+       else
++++ ./libstdc++-v3/include/c_global/cmath
+@@ -42,7 +42,7 @@
+ #include <bits/cpp_type_traits.h>
+ #include <ext/type_traits.h>
+ #define _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+-#include_next <math.h>
++#include <math.h>
+ #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+ #include <bits/std_abs.h>
+ 
++++ ./libstdc++-v3/include/bits/std_abs.h
+@@ -35,9 +35,9 @@
+ #include <bits/c++config.h>
+ 
+ #define _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+-#include_next <stdlib.h>
++#include <stdlib.h>
+ #ifdef __CORRECT_ISO_CPP_MATH_H_PROTO
+-# include_next <math.h>
++# include <math.h>
+ #endif
+ #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+ 
++++ ./libstdc++-v3/include/c_global/cstdlib
+@@ -72,7 +72,7 @@
+ // Need to ensure this finds the C library's <stdlib.h> not a libstdc++
+ // wrapper that might already be installed later in the include search path.
+ #define _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+-#include_next <stdlib.h>
++#include <stdlib.h>
+ #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
+ #include <bits/std_abs.h>
+ 

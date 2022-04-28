@@ -1,0 +1,24 @@
+NAME='libxcvt'
+VERSION='0.1.1'
+DIRECTORY='libxcvt-0.1.1'
+DEPENDENCIES='meson-0.61.4 ninja-1.10.2 python-3.10.3'
+FILENAME='libxcvt-0.1.1.tar.xz'
+SOURCE="https://www.x.org/pub/individual/lib/$FILENAME"
+
+build() {
+	patch -p0 < "$ROOT/enable_static.patch"
+
+	mkdir build
+	cd build
+
+	meson \
+	--prefix=/usr \
+	..
+	
+	ninja
+}
+
+package() {
+	cd build
+	DESTDIR="$DESTDIR" ninja install
+}

@@ -1,0 +1,25 @@
+NAME='libdrm'
+VERSION='2.4.110'
+DIRECTORY='libdrm-2.4.110'
+DEPENDENCIES="meson-0.61.4 ninja-1.10.2 python-3.10.3"
+FILENAME='libdrm-2.4.110.tar.xz'
+SOURCE="https://dri.freedesktop.org/libdrm/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	meson \
+	--prefix=/usr \
+	--buildtype=release \
+	-Dudev=true \
+	-Dvalgrind=false \
+	-Ddefault_library=static
+
+	ninja
+}
+
+package() {
+	cd build
+	DESTDIR="$DESTDIR" ninja install
+}

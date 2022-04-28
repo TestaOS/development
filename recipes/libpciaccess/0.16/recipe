@@ -1,0 +1,6 @@
+NAME='libpciaccess'
+VERSION='0.16'
+DIRECTORY='libpciaccess-0.16'
+DEPENDENCIES=''
+FILENAME='libpciaccess-0.16.tar.bz2'
+SOURCE="https://www.x.org/pub/individual/lib/$FILENAME"

@@ -1,0 +1,24 @@
+NAME='wayland'
+VERSION='1.20.0'
+DIRECTORY='wayland-1.20.0'
+DEPENDENCIES='meson-0.61.4 ninja-1.10.2 python-3.10.3 libffi-3.4.2 expat-2.4.7 libxml2-2.9.13'
+FILENAME='wayland-1.20.0.tar.xz'
+SOURCE="https://wayland.freedesktop.org/releases/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	meson \
+	--prefix=/usr \
+	--buildtype=release \
+	-Ddefault_library=static \
+	-Ddocumentation=false
+
+	ninja
+}
+
+package() {
+	cd build
+	DESTDIR="$DESTDIR" ninja install
+}

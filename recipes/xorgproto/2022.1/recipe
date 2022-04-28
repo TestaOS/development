@@ -1,0 +1,25 @@
+NAME='xorgproto'
+VERSION='2022.1'
+DIRECTORY='xorgproto-2022.1'
+DEPENDENCIES='meson-0.61.4 python-3.10.3 ninja-1.10.2'
+FILENAME='xorgproto-2022.1.tar.bz2'
+SOURCE="https://xorg.freedesktop.org/archive/individual/proto/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+	
+	meson \
+	--prefix=/usr \
+	-Dlegacy=true ..
+
+	ninja
+}
+
+package() {
+	cd build
+	DESTDIR="$DESTDIR" ninja install
+
+	mkdir -p "$DESTDIR/usr/lib"
+	mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib"
+}

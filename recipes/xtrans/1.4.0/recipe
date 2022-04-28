@@ -1,0 +1,13 @@
+NAME='xtrans'
+VERSION='1.4.0'
+DIRECTORY='xtrans-1.4.0'
+DEPENDENCIES='util-macros-1.19.3'
+FILENAME='xtrans-1.4.0.tar.bz2'
+SOURCE="https://www.x.org/pub/individual/lib/$FILENAME"
+
+package() {
+	make install DESTDIR="$DESTDIR"
+
+	mkdir -p "$DESTDIR/usr/lib"
+	mv "$DESTDIR/usr/share/pkgconfig" "$DESTDIR/usr/lib"
+}

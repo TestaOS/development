@@ -1,0 +1,6 @@
+NAME='libunwind'
+VERSION='1.6.2'
+DIRECTORY='libunwind-1.6.2'
+DEPENDENCIES=''
+FILENAME='libunwind-1.6.2.tar.gz'
+SOURCE="https://download.savannah.nongnu.org/releases/libunwind/$FILENAME"
