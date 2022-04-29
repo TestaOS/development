@@ -1,0 +1,23 @@
+NAME='pixman'
+VERSION='0.40.0'
+DIRECTORY='pixman-0.40.0'
+DEPENDENCIES='meson-0.61.4 ninja-1.10.2 python-3.10.3'
+FILENAME='pixman-0.40.0.tar.gz'
+SOURCE="https://www.cairographics.org/releases/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	meson --prefix=/usr \
+	-Ddefault_library=static \
+	--buildtype=release \
+	..
+
+	ninja
+}
+
+package() { 
+        cd build
+        DESTDIR="$DESTDIR" ninja install
+}

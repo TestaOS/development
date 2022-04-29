@@ -1,0 +1,23 @@
+NAME='libepoxy'
+VERSION='1.5.10'
+DIRECTORY='libepoxy-1.5.10'
+DEPENDENCIES='meson-0.61.4 ninja-1.10.2 python-3.10.3 libx11-1.7.5 xorgproto-2022.1 mesa-21.3.7'
+FILENAME='libepoxy-1.5.10.tar.xz'
+SOURCE="https://download.gnome.org/sources/libepoxy/1.5/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	meson --prefix=/usr \
+	--buildtype=release \
+	-Ddefault_library=static \
+	..
+
+	ninja
+}
+
+package() { 
+        cd build
+        DESTDIR="$DESTDIR" ninja install
+}
