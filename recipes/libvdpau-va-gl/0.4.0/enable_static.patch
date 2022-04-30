@@ -1,0 +1,11 @@
+--- ./src/CMakeLists.txt.old
++++ ./src/CMakeLists.txt
+@@ -8,7 +8,7 @@
+     ${LIBGL_LIBRARY_DIRS}
+ )
+ 
+-add_library(${DRIVER_NAME} SHARED
++add_library(${DRIVER_NAME} STATIC
+     api-bitmap-surface.cc
+     api-csc-matrix.cc
+     api-decoder.cc

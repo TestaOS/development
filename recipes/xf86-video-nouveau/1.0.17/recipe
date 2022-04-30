@@ -1,0 +1,17 @@
+NAME='xf86-video-nouveau'
+VERSION='1.0.17'
+DIRECTORY='xf86-video-nouveau-1.0.17'
+DEPENDENCIES='libdrm-2.4.110 xorgproto-2022.1 xorg-server-21.1.3 pixman-0.40.0 libpciaccess-0.16 grep-3.7'
+FILENAME='xf86-video-nouveau-1.0.17.tar.bz2'
+SOURCE="https://www.x.org/pub/individual/driver/$FILENAME"
+
+build() {
+	grep -rl slave | xargs sed -i s/slave/secondary/
+
+	./configure \
+        --prefix=/usr \
+        --enable-static \
+        --disable-shared
+
+        make -j$(nproc) V=1
+}

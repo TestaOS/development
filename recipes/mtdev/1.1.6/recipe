@@ -1,0 +1,17 @@
+NAME='mtdev'
+VERSION='1.1.6'
+DIRECTORY='mtdev-1.1.6'
+DEPENDENCIES=''
+FILENAME='mtdev-1.1.6.tar.bz2'
+SOURCE="https://bitmath.org/code/mtdev/$FILENAME"
+
+build() {
+	cp $ROOT/config.* "$SRCDIR/mtdev-1.1.6/config-aux"
+
+	./configure \
+	--prefix=/usr \
+	--enable-static \
+	--disable-shared
+
+	make -j$(nproc) V=1
+}

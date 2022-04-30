@@ -1,7 +1,7 @@
 NAME='libdrm'
 VERSION='2.4.110'
 DIRECTORY='libdrm-2.4.110'
-DEPENDENCIES="meson-0.61.4 ninja-1.10.2 python-3.10.3"
+DEPENDENCIES="meson-0.61.4 ninja-1.10.2 python-3.10.3 eudev-3.2.11 libpciaccess-0.16"
 FILENAME='libdrm-2.4.110.tar.xz'
 SOURCE="https://dri.freedesktop.org/libdrm/$FILENAME"
 
@@ -13,6 +13,9 @@ build() {
 	--prefix=/usr \
 	--buildtype=release \
 	-Dudev=true \
+	-Dintel=true \
+	-Dtegra=true \
+	-Dexynos=true \
 	-Dvalgrind=false \
 	-Ddefault_library=static
 

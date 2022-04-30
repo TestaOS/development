@@ -1,0 +1,14 @@
++++ ./src/meson.build
+@@ -8,11 +8,10 @@
+     vdpau_src += ['mesa_dri2.c']
+ endif
+ 
+-vdpau = shared_library('vdpau',
++vdpau = static_library('vdpau',
+     sources : vdpau_src,
+     include_directories : inc,
+     dependencies : [x11, libdl, threads, dri2],
+-    version : '1.0.0',
+     install : true,
+ )
+ 
