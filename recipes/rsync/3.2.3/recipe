@@ -1,7 +1,7 @@
 NAME='rsync'
 VERSION='3.2.3'
 DIRECTORY='rsync-3.2.3'
-DEPENDENCIES='zlib-1.2.11 openssl-1.1.1n'
+DEPENDENCIES='zlib=1.2.11 openssl=1.1.1n'
 FILENAME='rsync-3.2.3.tar.gz'
 SOURCE="https://www.samba.org/ftp/rsync/src/$FILENAME"
 

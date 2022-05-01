@@ -1,7 +1,7 @@
 NAME='openssl'
 VERSION='1.1.1n'
 DIRECTORY='openssl-1.1.1n'
-DEPENDENCIES='zlib-1.2.11'
+DEPENDENCIES='zlib=1.2.11'
 FILENAME='openssl-1.1.1n.tar.gz'
 SOURCE="https://www.openssl.org/source/$FILENAME"
 

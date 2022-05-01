@@ -1,7 +1,7 @@
 NAME='cmake'
 VERSION='3.22.3'
 DIRECTORY='cmake-3.22.3'
-DEPENDENCIES='zlib-1.2.11 curl-7.65.3 expat-2.4.7 libarchive-3.6.0 libuv-1.44.1'
+DEPENDENCIES='zlib=1.2.11 curl=7.65.3 expat=2.4.7 libarchive=3.6.0 libuv=1.44.1'
 FILENAME='cmake-3.22.3.tar.gz'
 SOURCE="https://github.com/Kitware/CMake/releases/download/v3.22.3/$FILENAME"
 

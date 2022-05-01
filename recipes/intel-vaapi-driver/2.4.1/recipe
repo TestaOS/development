@@ -1,6 +1,6 @@
 NAME='intel-vaapi-driver'
 VERSION='2.4.1'
 DIRECTORY='intel-vaapi-driver-2.4.1'
-DEPENDENCIES='libdrm-2.4.110 libpciaccess-0.16 libva-2.14.0'
+DEPENDENCIES='libdrm=2.4.110 libpciaccess=0.16 libva=2.14.0'
 FILENAME='intel-vaapi-driver-2.4.1.tar.bz2'
 SOURCE="https://github.com/intel/intel-vaapi-driver/releases/download/2.4.1/$FILENAME"

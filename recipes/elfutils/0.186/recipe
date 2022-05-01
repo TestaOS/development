@@ -1,7 +1,7 @@
 NAME='elfutils'
 VERSION='0.186'
 DIRECTORY='elfutils-0.186'
-DEPENDENCIES='zlib-1.2.11'
+DEPENDENCIES='zlib=1.2.11'
 FILENAME='elfutils-0.186.tar.bz2'
 SOURCE="https://sourceware.org/elfutils/ftp/0.186/$FILENAME"
 

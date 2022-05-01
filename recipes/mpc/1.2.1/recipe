@@ -1,6 +1,6 @@
 NAME='mpc'
 VERSION='1.2.1'
 DIRECTORY='mpc-1.2.1'
-DEPENDENCIES='gmp-6.2.1 mpfr-4.1.0'
+DEPENDENCIES='gmp=6.2.1 mpfr=4.1.0'
 FILENAME='mpc-1.2.1.tar.gz'
 SOURCE="https://ftp.gnu.org/gnu/mpc/$FILENAME"

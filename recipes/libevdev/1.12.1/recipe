@@ -1,6 +1,6 @@
 NAME='libevdev'
 VERSION='1.12.1'
 DIRECTORY='libevdev-1.12.1'
-DEPENDENCIES='python-3.10.3'
+DEPENDENCIES='python=3.10.3'
 FILENAME='libevdev-1.12.1.tar.xz'
 SOURCE="https://www.freedesktop.org/software/libevdev/$FILENAME"

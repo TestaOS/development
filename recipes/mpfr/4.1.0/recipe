@@ -1,7 +1,7 @@
 NAME='mpfr'
 VERSION='4.1.0'
 DIRECTORY='mpfr-4.1.0'
-DEPENDENCIES='gmp-6.2.1'
+DEPENDENCIES='gmp=6.2.1'
 FILENAME='mpfr-4.1.0.tar.xz'
 SOURCE="https://www.mpfr.org/mpfr-current/$FILENAME"
 

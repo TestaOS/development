@@ -1,7 +1,7 @@
 NAME='libinput'
 VERSION='1.20.1'
 DIRECTORY='libinput-1.20.1'
-DEPENDENCIES='meson-0.61.4 ninja-1.10.2 python-3.10.3 eudev-3.2.11 mtdev-1.1.6 libevdev-1.12.1'
+DEPENDENCIES='meson=0.61.4 ninja=1.10.2 python=3.10.3 eudev=3.2.11 mtdev=1.1.6 libevdev=1.12.1'
 FILENAME='libinput-1.20.1.tar.gz'
 SOURCE="https://gitlab.freedesktop.org/libinput/libinput/-/archive/1.20.1/$FILENAME"
 

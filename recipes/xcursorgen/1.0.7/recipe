@@ -1,7 +1,7 @@
 NAME='xcursorgen'
 VERSION='1.0.7'
 DIRECTORY='xcursorgen-1.0.7'
-DEPENDENCIES='util-macros-1.19.3 xorgproto-2022.1 libx11-1.7.5 libxcb-1.14 libxau-1.0.9 libxdmcp-1.1.3 libxcursor-1.2.1 libpng-1.6.37 libxrender-0.9.10 libxfixes-6.0.0 zlib-1.2.11'
+DEPENDENCIES='util-macros=1.19.3 xorgproto=2022.1 libx11=1.7.5 libxcb=1.14 libxau=1.0.9 libxdmcp=1.1.3 libxcursor=1.2.1 libpng=1.6.37 libxrender=0.9.10 libxfixes=6.0.0 zlib=1.2.11'
 FILENAME='xcursorgen-1.0.7.tar.bz2'
 SOURCE="https://www.x.org/pub/individual/app/$FILENAME"
 

@@ -1,7 +1,7 @@
 NAME='smproxy'
 VERSION='1.0.6'
 DIRECTORY='smproxy-1.0.6'
-DEPENDENCIES='util-macros-1.19.3 libsm-1.2.3 libice-1.0.10 libxt-1.2.1 libxmu-1.1.3 xorgproto-2022.1 libx11-1.7.5 libxcb-1.14 libxau-1.0.9 libxdmcp-1.1.3'
+DEPENDENCIES='util-macros=1.19.3 libsm=1.2.3 libice=1.0.10 libxt=1.2.1 libxmu=1.1.3 xorgproto=2022.1 libx11=1.7.5 libxcb=1.14 libxau=1.0.9 libxdmcp=1.1.3'
 FILENAME='smproxy-1.0.6.tar.bz2'
 SOURCE="https://www.x.org/pub/individual/app/$FILENAME"
 

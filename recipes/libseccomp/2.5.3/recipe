@@ -1,6 +1,6 @@
 NAME='libseccomp'
 VERSION='2.5.3'
 DIRECTORY='libseccomp-2.5.3'
-DEPENDENCIES='gperf-3.1'
+DEPENDENCIES='gperf=3.1'
 FILENAME='libseccomp-2.5.3.tar.gz'
 SOURCE="https://github.com/opencontainers/runc/releases/download/v1.1.1/$FILENAME"

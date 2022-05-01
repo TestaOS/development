@@ -1,7 +1,7 @@
 NAME='libftdi'
 VERSION='1.1.5'
 DIRECTORY='libftdi1-1.5'
-DEPENDENCIES='libusb-1.0.25 boost-1.78.0 swig-4.0.2 python-3.10.3 confuse-3.3'
+DEPENDENCIES='libusb=1.0.25 boost=1.78.0 swig=4.0.2 python=3.10.3 confuse=3.3'
 FILENAME='libftdi1-1.5.tar.bz2'
 SOURCE="https://www.intra2net.com/en/developer/libftdi/download/$FILENAME"
 

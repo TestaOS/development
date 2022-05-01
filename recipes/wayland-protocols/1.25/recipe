@@ -1,7 +1,7 @@
 NAME='wayland-protocols'
 VERSION='1.25'
 DIRECTORY='wayland-protocols-1.25'
-DEPENDENCIES='meson-0.61.4 ninja-1.10.2 python-3.10.3 wayland-1.20.0 libffi-3.4.2'
+DEPENDENCIES='meson=0.61.4 ninja=1.10.2 python=3.10.3 wayland=1.20.0 libffi=3.4.2'
 FILENAME='wayland-protocols-1.25.tar.xz'
 SOURCE="https://wayland.freedesktop.org/releases/$FILENAME"
 

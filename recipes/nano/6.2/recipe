@@ -1,7 +1,7 @@
 NAME='nano'
 VERSION='6.2'
 DIRECTORY='nano-6.2'
-DEPENDENCIES='ncurses-6.3'
+DEPENDENCIES='ncurses=6.3'
 FILENAME='nano-6.2.tar.xz'
 SOURCE="https://mirrors.kernel.org/gnu/nano/$FILENAME"
 

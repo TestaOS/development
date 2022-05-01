@@ -1,7 +1,7 @@
 NAME='git'
 VERSION='2.31.1'
 DIRECTORY='git-2.31.1'
-DEPENDENCIES='python-3.10.3 zlib-1.2.11 curl-7.65.3 libidn2-2.3.2 openssl-1.1.1n'
+DEPENDENCIES='python=3.10.3 zlib=1.2.11 curl=7.65.3 libidn2=2.3.2 openssl=1.1.1n'
 FILENAME='git-2.31.1.tar.xz'
 SOURCE="https://www.kernel.org/pub/software/scm/git/$FILENAME"
 

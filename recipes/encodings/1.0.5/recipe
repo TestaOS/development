@@ -1,6 +1,6 @@
 NAME='encodings'
 VERSION='1.0.5'
 DIRECTORY='encodings-1.0.5'
-DEPENDENCIES='util-macros-1.19.3 mkfontscale-1.2.2'
+DEPENDENCIES='util-macros=1.19.3 mkfontscale=1.2.2'
 FILENAME='encodings-1.0.5.tar.bz2'
 SOURCE="https://www.x.org/pub/individual/font/$FILENAME"

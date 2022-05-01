@@ -1,7 +1,7 @@
 NAME='curl'
 VERSION='7.65.3'
 DIRECTORY='curl-7.65.3'
-DEPENDENCIES='perl-5.34.1 libidn2-2.3.2 openssl-1.1.1n'
+DEPENDENCIES='perl=5.34.1 libidn2=2.3.2 openssl=1.1.1n'
 FILENAME='curl-7.65.3.tar.xz'
 SOURCE="https://curl.haxx.se/download/$FILENAME"
 

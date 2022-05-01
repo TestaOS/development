@@ -1,7 +1,7 @@
 NAME='runc'
 VERSION='1.1.1'
 DIRECTORY='52de29d'
-DEPENDENCIES='libseccomp-2.5.3 go-1.18'
+DEPENDENCIES='libseccomp=2.5.3 go=1.18'
 FILENAME='runc-1.1.1.tar.gz'
 SOURCE="git+https://github.com/opencontainers/runc.git#52de29d"
 

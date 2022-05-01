@@ -1,6 +1,6 @@
 NAME='eudev'
 VERSION='3.2.11'
 DIRECTORY='eudev-3.2.11'
-DEPENDENCIES='gperf-3.1'
+DEPENDENCIES='gperf=3.1'
 FILENAME='eudev-3.2.11.tar.gz'
 SOURCE="https://github.com/eudev-project/eudev/releases/download/v3.2.11/$FILENAME"

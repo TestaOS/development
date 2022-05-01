@@ -1,7 +1,7 @@
 NAME='uboot-tools'
 VERSION='2022.04'
 DIRECTORY='u-boot-2022.04'
-DEPENDENCIES='openssl-1.1.1n util-linux-2.38 gnutls-3.7.4'
+DEPENDENCIES='openssl=1.1.1n util-linux=2.38 gnutls=3.7.4'
 FILENAME="uboot-tools-2022.04.tar.gz"
 SOURCE="https://github.com/u-boot/u-boot/archive/refs/tags/v2022.04.tar.gz"
 

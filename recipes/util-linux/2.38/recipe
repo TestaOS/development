@@ -1,7 +1,7 @@
 NAME='util-linux'
 VERSION='2.38'
 DIRECTORY='util-linux-2.38'
-DEPENDENCIES='ncurses-6.3 python-3.10.3'
+DEPENDENCIES='ncurses=6.3 python=3.10.3'
 FILENAME='util-linux-2.38.tar.gz'
 SOURCE="https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.38/$FILENAME"
 

@@ -1,6 +1,6 @@
 NAME='swig'
 VERSION='4.0.2'
 DIRECTORY='swig-4.0.2'
-DEPENDENCIES='pcre-8.45'
+DEPENDENCIES='pcre=8.45'
 FILENAME="swig-4.0.2.tar.gz"
 SOURCE="http://prdownloads.sourceforge.net/swig/$FILENAME"

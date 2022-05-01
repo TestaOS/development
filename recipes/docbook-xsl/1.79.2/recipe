@@ -1,7 +1,7 @@
 NAME='docbook-xsl'
 VERSION='1.79.2'
 DIRECTORY='docbook-xsl-1.79.2'
-DEPENDENCIES='libxml2-2.9.13'
+DEPENDENCIES='libxml2=2.9.13'
 FILENAME='docbook-xsl-1.79.2.tar.bz2'
 SOURCE="https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/$FILENAME"
 

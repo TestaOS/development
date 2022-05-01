@@ -1,7 +1,7 @@
 NAME='btrfs-progs'
 VERSION='5.16.2'
 DIRECTORY='btrfs-progs-5.16.2'
-DEPENDENCIES='e2fsprogs-1.46.5 zlib-1.2.11 lzo-2.10 util-linux-2.38'
+DEPENDENCIES='e2fsprogs=1.46.5 zlib=1.2.11 lzo=2.10 util-linux=2.38'
 FILENAME='btrfs-progs-5.16.2.tar.gz'
 SOURCE="https://github.com/kdave/btrfs-progs/archive/refs/tags/v5.16.2.tar.gz"
 

@@ -1,7 +1,7 @@
 NAME='libuv'
 VERSION='1.44.1'
 DIRECTORY='libuv-v1.44.1'
-DEPENDENCIES='libtool-2.4.6'
+DEPENDENCIES='libtool=2.4.6'
 FILENAME='libuv-v1.44.1.tar.gz'
 SOURCE="https://dist.libuv.org/dist/v1.44.1/$FILENAME"
 

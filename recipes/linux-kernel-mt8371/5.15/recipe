@@ -1,7 +1,7 @@
 NAME='linux-kernel-mt8371'
 VERSION='5.15'
 DIRECTORY=''
-DEPENDENCIES='firmware-mt8371-8438.B wireless-regdb-2022-02-18 vboot-utils-R101-14588.B uboot-tools-2022.04 openssl-1.1.1n kmod-29 rsync-3.2.3'
+DEPENDENCIES='firmware-mt8371=8438.B wireless-regdb=2022-02-18 vboot-utils=R101-14588.B uboot-tools=2022.04 openssl=1.1.1n kmod=29 rsync=3.2.3'
 FILENAME="linux-kernel-mt8371-5.15.tar.gz"
 SOURCE="https://chromium.googlesource.com/chromiumos/third_party/kernel/+archive/refs/heads/chromeos-5.15.tar.gz"
 

@@ -1,7 +1,7 @@
 NAME='docker'
 VERSION='20.10.14'
 DIRECTORY=''
-DEPENDENCIES='go-1.18 lvm2-2.3.15 btrfs-progs-5.16.2'
+DEPENDENCIES='go=1.18 lvm2=2.3.15 btrfs-progs=5.16.2'
 FILENAME='docker-20.10.14.tar.gz'
 SOURCE=(
         'git+https://github.com/docker/cli.git#a224086349'

@@ -1,7 +1,7 @@
 NAME='wget'
 VERSION='1.21.3'
 DIRECTORY='wget-1.21.3'
-DEPENDENCIES='openssl-1.1.1n'
+DEPENDENCIES='openssl=1.1.1n'
 FILENAME='wget-1.21.3.tar.gz'
 SOURCE="https://ftp.gnu.org/gnu/wget/$FILENAME"
 

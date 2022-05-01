@@ -1,7 +1,7 @@
 NAME='xlsatoms'
 VERSION='1.1.3'
 DIRECTORY='xlsatoms-1.1.3'
-DEPENDENCIES='util-macros-1.19.3 xorgproto-2022.1 libxcb-1.14 libxau-1.0.9 libxdmcp-1.1.3'
+DEPENDENCIES='util-macros=1.19.3 xorgproto=2022.1 libxcb=1.14 libxau=1.0.9 libxdmcp=1.1.3'
 FILENAME='xlsatoms-1.1.3.tar.bz2'
 SOURCE="https://www.x.org/pub/individual/app/$FILENAME"
 

@@ -1,7 +1,7 @@
 NAME='zlib'
 VERSION='1.2.11'
 DIRECTORY='zlib-1.2.11'
-DEPENDENCIES='perl-5.34.1'
+DEPENDENCIES='perl=5.34.1'
 FILENAME="zlib-1.2.11.tar.gz"
 SOURCE="https://github.com/madler/zlib/archive/refs/tags/v1.2.11.tar.gz"
 

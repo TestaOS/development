@@ -1,7 +1,7 @@
 NAME='xpr'
 VERSION='1.0.5'
 DIRECTORY='xpr-1.0.5'
-DEPENDENCIES='util-macros-1.19.3 xorgproto-2022.1 libx11-1.7.5 libxcb-1.14 libxau-1.0.9 libxdmcp-1.1.3 libxmu-1.1.3'
+DEPENDENCIES='util-macros=1.19.3 xorgproto=2022.1 libx11=1.7.5 libxcb=1.14 libxau=1.0.9 libxdmcp=1.1.3 libxmu=1.1.3'
 FILENAME='xpr-1.0.5.tar.bz2'
 SOURCE="https://www.x.org/pub/individual/app/$FILENAME"
 

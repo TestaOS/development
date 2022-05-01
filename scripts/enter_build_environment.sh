@@ -1,3 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 
-docker run -it --rm -e PATH='/bin:/opt/scripts' --mount type=bind,source=/opt/testaos,target=/opt build nice -n19 bash
+COMMAND="${1:-nice -n19 bash}"
+
+docker run -it --rm -e PATH='/bin:/opt/scripts' --mount type=bind,source=/opt/testaos,target=/opt build $COMMAND

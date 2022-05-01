@@ -1,6 +1,6 @@
 NAME='libsm'
 VERSION='1.2.3'
 DIRECTORY='libSM-1.2.3'
-DEPENDENCIES='util-macros-1.19.3 xorgproto-2022.1 xtrans-1.4.0 libice-1.0.10'
+DEPENDENCIES='util-macros=1.19.3 xorgproto=2022.1 xtrans=1.4.0 libice=1.0.10'
 FILENAME='libsm-1.2.3.tar.bz2'
 SOURCE="https://www.x.org/pub/individual/lib/libSM-1.2.3.tar.bz2"

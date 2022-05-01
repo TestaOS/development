@@ -1,7 +1,7 @@
 NAME='xorgproto'
 VERSION='2022.1'
 DIRECTORY='xorgproto-2022.1'
-DEPENDENCIES='meson-0.61.4 python-3.10.3 ninja-1.10.2'
+DEPENDENCIES='meson=0.61.4 python=3.10.3 ninja=1.10.2'
 FILENAME='xorgproto-2022.1.tar.bz2'
 SOURCE="https://xorg.freedesktop.org/archive/individual/proto/$FILENAME"
 

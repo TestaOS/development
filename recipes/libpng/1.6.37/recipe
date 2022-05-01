@@ -1,6 +1,6 @@
 NAME='libpng'
 VERSION='1.6.37'
 DIRECTORY='libpng-1.6.37'
-DEPENDENCIES='zlib-1.2.11'
+DEPENDENCIES='zlib=1.2.11'
 FILENAME='libpng-1.6.37.tar.xz'
 SOURCE="https://downloads.sourceforge.net/libpng/$FILENAME"

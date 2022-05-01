@@ -1,8 +1,7 @@
 NAME='linux-kernel-soraka'
 VERSION='5.4'
 DIRECTORY=''
-#DEPENDENCIES='firmware-mt8371-8438.B wireless-regdb-2022-02-18 vboot-utils-R101-14588.B uboot-tools-2022.04 openssl-1.1.1n kmod-29'
-DEPENDENCIES='wireless-regdb-2022-02-18 openssl-1.1.1n kmod-29 elfutils-0.186 diffutils-3.8 zlib-1.2.11'
+DEPENDENCIES='wireless-regdb=2022-02-18 openssl=1.1.1n kmod=29 elfutils=0.186 diffutils=3.8 zlib=1.2.11'
 FILENAME="linux-kernel-soraka-5.4.tar.gz"
 SOURCE="https://chromium.googlesource.com/chromiumos/third_party/kernel/+archive/refs/heads/chromeos-5.4.tar.gz"
 

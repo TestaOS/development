@@ -1,7 +1,7 @@
 NAME='pcre'
 VERSION='8.45'
 DIRECTORY='pcre-8.45'
-DEPENDENCIES='zlib-1.2.11 bzip2-1.0.8 readline-8.1.2 ncurses-6.3'
+DEPENDENCIES='zlib=1.2.11 bzip2=1.0.8 readline=8.1.2 ncurses=6.3'
 FILENAME="pcre-8.45.tar.bz2"
 SOURCE="https://downloads.sourceforge.net/project/pcre/pcre/8.45/$FILENAME"
 

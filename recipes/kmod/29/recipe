@@ -1,7 +1,7 @@
 NAME='kmod'
 VERSION='29'
 DIRECTORY='kmod-29'
-DEPENDENCIES='libtool-2.4.6 zlib-1.2.11 libxslt-1.1.35 openssl-1.1.1n'
+DEPENDENCIES='libtool=2.4.6 zlib=1.2.11 libxslt=1.1.35 openssl=1.1.1n'
 FILENAME='kmod-29.tar.gz'
 SOURCE="https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git/snapshot/$FILENAME"
 

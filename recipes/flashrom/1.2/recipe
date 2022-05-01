@@ -1,7 +1,7 @@
 NAME='flashrom'
 VERSION='1.2'
 DIRECTORY='flashrom-v1.2'
-DEPENDENCIES='python-3.10.3 libusb-1.0.25 libftdi-1.1.5 meson-0.61.4 ninja-1.10.2'
+DEPENDENCIES='python=3.10.3 libusb=1.0.25 libftdi=1.1.5 meson=0.61.4 ninja=1.10.2'
 FILENAME='flashrom-v1.2.tar.bz2'
 SOURCE="https://download.flashrom.org/releases/$FILENAME"
 

@@ -1,7 +1,7 @@
 NAME='openssh'
 VERSION='9.0p1'
 DIRECTORY='openssh-9.0p1'
-DEPENDENCIES='zlib-1.2.11 openssl-1.1.1n'
+DEPENDENCIES='zlib=1.2.11 openssl=1.1.1n'
 FILENAME='openssh-9.0p1.tar.gz'
 SOURCE="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$FILENAME"
 

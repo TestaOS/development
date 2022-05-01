@@ -1,7 +1,7 @@
 NAME='containerd'
 VERSION='1.6.2'
 DIRECTORY='de8046a'
-DEPENDENCIES='go-1.18 btrfs-progs-5.16.2'
+DEPENDENCIES='go=1.18 btrfs-progs=5.16.2'
 FILENAME='containerd-1.6.2.tar.gz'
 SOURCE="git+https://github.com/containerd/containerd.git#de8046a"
 

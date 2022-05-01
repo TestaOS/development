@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 #THIS SCRIPT SHOULD BE RUN INSIDE THE BUILD DOCKER CONTAINER!
 
@@ -36,9 +36,12 @@ download() {
 	fi
 }
 
-#Read package build file
-PACKAGE=$1
-VERSION="${2:-stable}"
+PACKAGE="${1%%=*}"
+VERSION="${1##*=}"
+
+if [ "$VERSION" = "$PACKAGE" ]; then
+	VERSION='stable'
+fi
 
 #source $FILE
 ROOT="/opt/recipes/$PACKAGE/$VERSION"
@@ -48,6 +51,7 @@ if [ ! -f $RECIPE ]; then
 	exit 1;
 fi
 
+#Read package build file
 . "$RECIPE"
 
 echo "Building package $PACKAGE-$VERSION"
@@ -58,18 +62,28 @@ rm -rf "$DESTDIR"
 echo 'Loading dependencies...'
 
 #CHECK IF EACH DEPENDENCY EXIST LOCALLY. IF NOT THEN DOWNLOAD!
-#IF YOU CANT DOWNLOAD, THEN FAIL HERE!!
+#IF YOU CANT DOWNLOAD, THEN TRY TO BUILD IT!
 
 for DEPENDENCY in $DEPENDENCIES; do
-	echo $DEPENDENCY
-	tar -h -xf "/opt/packages/$DEPENDENCY.tar.gz" -C /
+
+	PACK="${DEPENDENCY/=/-}"
+
+	if [ ! -f "/opt/packages/$PACK.tar.gz" ]; then
+		#Dependency does not exit, try to download
+		#wget....
+
+		#Download failed, try to build
+		echo 'Download failed. Trying to build package...'
+		/opt/script/build_package.sh $DEPENDENCY
+	fi
+
+	tar -h -xf "/opt/packages/$PACK.tar.gz" -C /
 done
 
 CACHEDIR='/opt/cache'
 SRCDIR='/tmp/source'
 rm -rf "$SRCDIR"
 mkdir -p $SRCDIR
-
 mkdir -p $CACHEDIR
 if [ ! -f "$CACHEDIR/$FILENAME" ]; then
 
