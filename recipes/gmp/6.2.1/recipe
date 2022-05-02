@@ -1,7 +1,7 @@
 NAME='gmp'
 VERSION='6.2.1'
 DIRECTORY='gmp-6.2.1'
-DEPENDENCIES=''
+DEPENDENCIES='m4=1.4.19'
 FILENAME='gmp-6.2.1.tar.xz'
 SOURCE="https://gmplib.org/download/gmp/$FILENAME"
 

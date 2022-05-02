@@ -74,7 +74,7 @@ for DEPENDENCY in $DEPENDENCIES; do
 
 		#Download failed, try to build
 		echo 'Download failed. Trying to build package...'
-		/opt/script/build_package.sh $DEPENDENCY
+		/opt/scripts/build_package.sh $DEPENDENCY
 	fi
 
 	tar -h -xf "/opt/packages/$PACK.tar.gz" -C /
