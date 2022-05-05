@@ -1,0 +1,25 @@
+NAME='build-environment'
+VERSION='1.0'
+DIRECTORY=''
+DEPENDENCIES='make=4.3 m4=1.4.19 gcc=11.2.0 busybox=1.35.0 bash=5.1.16 binutils=2.38 flex=2.6.4 bison=3.8.2 kernel-headers=5.10 glibc=2.35 perl=5.34.1 pkg-config=0.29.2 autoconf=2.69 
+		gettext=0.20.1 automake=1.16.5 coreutils=9.0 texinfo=6.7 cmake=3.22.3 git=2.31.1 wget=1.21.3'
+FILENAME='build-environment-1.0.tar.gz'
+SOURCE="https://github.com/TestaOS/base-sysroot/archive/refs/heads/master.tar.gz"
+
+build() {
+        mkdir -p /tmp/sysroot
+        cp -r base-sysroot-master/* /tmp/sysroot
+
+        for package in $DEPENDENCIES; do
+                PACK="${package%%=*}"
+                VER="${package##*=}"
+
+                echo "Unpacking $package..."
+                tar -h -xf "/opt/packages/$PACK-$VER.tar.gz" -C /tmp/sysroot
+        done
+}
+
+package() {
+        rm -rf $DESTDIR
+        mv /tmp/sysroot $DESTDIR
+}

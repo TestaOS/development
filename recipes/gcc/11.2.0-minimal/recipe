@@ -6,6 +6,8 @@ FILENAME='gcc-11.2.0.tar.xz'
 SOURCE="http://ftp.gwdg.de/pub/misc/gcc/releases/gcc-11.2.0/$FILENAME"
 
 build() {
+	contrib/download_prerequisites
+
 	mkdir build
 	cd build
 
@@ -19,10 +21,13 @@ build() {
 	--with-static-standard-libraries \
 	--enable-languages=c,c++
 
+	#--disable-decimal-float, --disable-threads, --disable-libatomic, --disable-libgomp, --disable-libquadmath, --disable-libssp, --disable-libvtv, --disable-libstdcxx
+
 	make -j2 V=1
 }
 
 package() {
+	cd build
 	make DESTDIR="$DESTDIR" install-strip
 	ln -s gcc "$DESTDIR/usr/bin/cc"
 }

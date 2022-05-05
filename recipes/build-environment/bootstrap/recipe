@@ -1,0 +1,37 @@
+NAME='build-environment'
+VERSION='boostrap'
+DIRECTORY=''
+DEPENDENCIES=''
+FILENAME='build-environment-1.0.tar.gz'
+SOURCE="https://github.com/TestaOS/base-sysroot/archive/refs/heads/master.tar.gz"
+
+before() {
+	apt-get update
+	apt-get install -y build-essential wget m4 bison rsync python3 gawk texinfo flex
+}
+
+build() {
+	mkdir -p /tmp/sysroot
+	cp -r base-sysroot-master/* /tmp/sysroot
+
+	packages='gcc=11.2.0-minimal busybox=1.35.0 kernel-headers=5.10 glibc=2.35 binutils=2.38 bash=5.1.16'
+
+	for package in $packages; do
+		PACK="${package%%=*}"
+		VER="${package##*=}"
+
+		FILE="/opt/packages/$PACK-$VER.tar.gz"
+
+		if [ ! -f $FILE ]; then
+			SKIP_DEPENDENCIES=TRUE /opt/scripts/build_package.sh $package
+		fi
+
+		echo "Unpacking $package..."
+		tar -h -xf $FILE -C /tmp/sysroot
+	done
+}
+
+package() {
+	rm -rf $DESTDIR
+	mv /tmp/sysroot $DESTDIR
+}

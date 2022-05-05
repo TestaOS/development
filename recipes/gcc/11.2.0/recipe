@@ -1,7 +1,7 @@
 NAME='gcc'
 VERSION='11.2.0'
 DIRECTORY='gcc-11.2.0'
-DEPENDENCIES='gmp=6.2.1 mpfr=4.1.0 mpc=1.2.1 make=4.3'
+DEPENDENCIES='gmp=6.2.1 mpfr=4.1.0 mpc=1.2.1'
 FILENAME='gcc-11.2.0.tar.xz'
 SOURCE="http://ftp.gwdg.de/pub/misc/gcc/releases/gcc-11.2.0/$FILENAME"
 

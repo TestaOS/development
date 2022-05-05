@@ -9,9 +9,6 @@ build() {
 	make defconfig
 
 	sed "/CONFIG_PREFIX/s/.*/CONFIG_PREFIX=\"\/tmp\/package\"/" -i .config
-	sed "/CONFIG_FEATURE_WGET_OPENSSL/s/.*/CONFIG_FEATURE_WGET_OPENSSL=n/" -i .config
-	sed "/CONFIG_BASH_IS_NONE/s/.*/CONFIG_BASH_IS_NONE=n/" -i .config
-	sed "/# CONFIG_BASH_IS_HUSH/s/.*/CONFIG_BASH_IS_HUSH=y/" -i .config
 		
 	make -j$(nproc) V=1        
 }

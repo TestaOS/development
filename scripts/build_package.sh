@@ -3,9 +3,9 @@ set -e
 #THIS SCRIPT SHOULD BE RUN INSIDE THE BUILD DOCKER CONTAINER!
 
 #Optimize for maximum binary speed and strip binary for minimal size
-export CFLAGS='-O3 -s -w -fPIC -static-libstdc++ -static-libgcc'
-export CXXFLAGS='-O3 -s -w -fPIC -static-libstdc++ -static-libgcc'
-export LDFLAGS='-s -w'
+export CFLAGS='-O3 -fPIC -static-libstdc++ -static-libgcc'
+export CXXFLAGS='-O3 -fPIC -static-libstdc++ -static-libgcc'
+export LDFLAGS=''
 
 export CGO_CPPFLAGS="${CXXFLAGS}"
 export CGO_CFLAGS="${CFLAGS}"
@@ -55,43 +55,49 @@ fi
 . "$RECIPE"
 
 echo "Building package $PACKAGE-$VERSION"
+
+if type 'before' 2>/dev/null | grep -q 'function'; then
+        before
+fi
+
 DESTDIR='/tmp/package'
 rm -rf "$DESTDIR"
 
-#Fetch dependencies
-echo 'Loading dependencies...'
+if [ -z "$SKIP_DEPENDENCIES" ]; then
+	#Fetch dependencies
+	echo 'Loading dependencies...'
 
-#CHECK IF EACH DEPENDENCY EXIST LOCALLY. IF NOT THEN DOWNLOAD!
-#IF YOU CANT DOWNLOAD, THEN TRY TO BUILD IT!
+	#CHECK IF EACH DEPENDENCY EXIST LOCALLY. IF NOT THEN DOWNLOAD!
+	#IF YOU CANT DOWNLOAD, THEN TRY TO BUILD IT!
 
-for DEPENDENCY in $DEPENDENCIES; do
+	for DEPENDENCY in $DEPENDENCIES; do
 
-	PACK="${DEPENDENCY/=/-}"
+		PACK="${DEPENDENCY/=/-}"
 
-	if [ ! -f "/opt/packages/$PACK.tar.gz" ]; then
-		#Dependency does not exit, try to download
-		#wget....
+		if [ ! -f "/opt/packages/$PACK.tar.gz" ]; then
+			#Dependency does not exit, try to download
+			#wget....
 
-		#Download failed, try to build
-		echo 'Download failed. Trying to build package...'
-		/opt/scripts/build_package.sh $DEPENDENCY
-	fi
+			#Download failed, try to build
+			echo 'Download failed. Trying to build package...'
+			/opt/scripts/build_package.sh $DEPENDENCY
+		fi
 
-	tar -h -xf "/opt/packages/$PACK.tar.gz" -C /
-done
+		tar -h -xf "/opt/packages/$PACK.tar.gz" -C /
+	done
+fi
 
 CACHEDIR='/opt/cache'
 SRCDIR='/tmp/source'
 rm -rf "$SRCDIR"
 mkdir -p $SRCDIR
 mkdir -p $CACHEDIR
-if [ ! -f "$CACHEDIR/$FILENAME" ]; then
 
+if [ ! -f "$CACHEDIR/$FILENAME" ]; then
 	#Check if source is an array
 	if [ "${#SOURCE[@]}" -gt "1" ]; then
-
-		for DOWNLOAD in "${SOURCE[@]}"; do
-			download $DOWNLOAD
+		for DL in $SOURCE; do
+			download $DL
 		done
 	else
 		download $SOURCE "$CACHEDIR/$FILENAME"
