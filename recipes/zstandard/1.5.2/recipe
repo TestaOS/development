@@ -1,0 +1,15 @@
+NAME='zstandard'
+VERSION='1.5.2'
+DIRECTORY='zstd-1.5.2'
+DEPENDENCIES=''
+FILENAME='zstandard-1.5.2.tar.gz'
+SOURCE="https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-1.5.2.tar.gz"
+
+build() {
+	make prefix=/usr
+}
+
+package() {
+	make prefix=/usr install DESTDIR="$DESTDIR"
+	rm $DESTDIR/usr/lib/*.so*
+}

@@ -83,6 +83,7 @@ if [ -z "$SKIP_DEPENDENCIES" ]; then
 			/opt/scripts/build_package.sh $DEPENDENCY
 		fi
 
+		echo $DEPENDENCY
 		tar -h -xf "/opt/packages/$PACK.tar.gz" -C /
 	done
 fi
