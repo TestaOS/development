@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-#THIS SCRIPT SHOULD BE RUN INSIDE THE BUILD DOCKER CONTAINER!
 
 #Optimize for maximum binary speed and strip binary for minimal size
 export CFLAGS='-O3 -fPIC -static-libstdc++ -static-libgcc'
@@ -28,10 +27,10 @@ download() {
 	else
 		FILE="${2:-$(mktemp)}"
 
-		echo 'Downloading source...'
+		echo "Downloading source $FILE..."
 		wget --no-check-certificate -O "$FILE" "$1"
 
-        	echo 'Unpacking source...'
+        	echo "Unpacking source $FILE..."
         	tar xf "$FILE" -C $SRCDIR
 	fi
 }
@@ -47,14 +46,14 @@ fi
 ROOT="/opt/recipes/$PACKAGE/$VERSION"
 RECIPE="$ROOT/recipe"
 if [ ! -f $RECIPE ]; then
-	echo "Specified package does not exist"
+	echo "Package $1 does not exist"
 	exit 1;
 fi
 
 #Read package build file
 . "$RECIPE"
 
-echo "Building package $PACKAGE-$VERSION"
+echo "Building package $1"
 
 if type 'before' 2>/dev/null | grep -q 'function'; then
         before
@@ -65,7 +64,7 @@ rm -rf "$DESTDIR"
 
 if [ -z "$SKIP_DEPENDENCIES" ]; then
 	#Fetch dependencies
-	echo 'Loading dependencies...'
+	echo "Loading dependencies for $1..."
 
 	#CHECK IF EACH DEPENDENCY EXIST LOCALLY. IF NOT THEN DOWNLOAD!
 	#IF YOU CANT DOWNLOAD, THEN TRY TO BUILD IT!
@@ -75,15 +74,14 @@ if [ -z "$SKIP_DEPENDENCIES" ]; then
 		PACK="${DEPENDENCY/=/-}"
 
 		if [ ! -f "/opt/packages/$PACK.tar.gz" ]; then
-			#Dependency does not exit, try to download
+			echo "Dependency $DEPENDENCY does not exist locally. Downloading..."
 			#wget....
 
-			#Download failed, try to build
-			echo 'Download failed. Trying to build package...'
+			echo "Download failed. Trying to build package $DEPENDENCY from source..."
 			/opt/scripts/build_package.sh $DEPENDENCY
 		fi
 
-		echo $DEPENDENCY
+		echo "Unpacking $DEPENDENCY..."
 		tar -h -xf "/opt/packages/$PACK.tar.gz" -C /
 	done
 fi
@@ -95,22 +93,23 @@ mkdir -p $SRCDIR
 mkdir -p $CACHEDIR
 
 if [ ! -f "$CACHEDIR/$FILENAME" ]; then
+
 	#Check if source is an array
-	if [ "${#SOURCE[@]}" -gt "1" ]; then
-		for DL in $SOURCE; do
+	if [ "${#SOURCE[@]}" -gt 1 ]; then
+		for DL in "${SOURCE[@]}"; do
 			download $DL
 		done
 	else
 		download $SOURCE "$CACHEDIR/$FILENAME"
 	fi
 else
-	echo 'Unpacking source...'
+	echo "Unpacking source $FILENAME..."
 	tar xf "$CACHEDIR/$FILENAME" -C $SRCDIR
 fi
 
 #If cache does not exit, pack source dir
 if [ ! -f "$CACHEDIR/$FILENAME" ]; then
-	echo 'Saving source to cache...'
+	echo "Saving source $FILENAME to cache..."
 	tar zcf "$CACHEDIR/$FILENAME" -C $SRCDIR .
 fi
 
@@ -145,7 +144,7 @@ fi
 
 cd "$DESTDIR"
 mkdir -p /opt/packages
-echo 'Compressing package...'
+echo "Compressing package $1..."
 tar zcf "/opt/packages/$PACKAGE-$VERSION.tar.gz" .
 
-echo 'Done!'
+echo "Done with $1"

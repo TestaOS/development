@@ -1,7 +1,7 @@
 NAME='wpa-supplicant'
 VERSION='2.10'
 DIRECTORY='wpa_supplicant-2.10/wpa_supplicant'
-DEPENDENCIES='libnl=3.5.0 openssl=1.1.1n readline=8.1.2 ncurses=6.3'
+DEPENDENCIES='libnl=3.6.0 openssl=1.1.1n readline=8.1.2 ncurses=6.3'
 FILENAME='wpa-supplicant-2.10.tar.gz'
 SOURCE="http://w1.fi/releases/wpa_supplicant-2.10.tar.gz"
 

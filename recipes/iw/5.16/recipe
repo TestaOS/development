@@ -1,0 +1,10 @@
+NAME='iw'
+VERSION='5.16'
+DIRECTORY='iw-5.16'
+DEPENDENCIES='libnl=3.6.0'
+FILENAME='iw-5.16.tar.xz'
+SOURCE="https://www.kernel.org/pub/software/network/iw/$FILENAME"
+
+build() {
+	make -j$(nproc) V=1
+}

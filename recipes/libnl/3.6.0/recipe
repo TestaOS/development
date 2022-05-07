@@ -1,0 +1,6 @@
+NAME='libnl'
+VERSION='3.6.0'
+DIRECTORY='libnl-3.6.0'
+DEPENDENCIES=''
+FILENAME='libnl-3.6.0.tar.gz'
+SOURCE="https://github.com/thom311/libnl/releases/download/libnl3_6_0/$FILENAME"
