@@ -1,4 +1,2 @@
 cache/*
-packages/*
-
-!packages/sysroot-base-1.0.tar.gz
+packages*

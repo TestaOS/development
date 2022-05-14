@@ -59,9 +59,6 @@ if type 'before' 2>/dev/null | grep -q 'function'; then
         before
 fi
 
-DESTDIR='/tmp/package'
-rm -rf "$DESTDIR"
-
 if [ -z "$SKIP_DEPENDENCIES" ]; then
 	#Fetch dependencies
 	echo "Loading dependencies for $1..."
@@ -112,6 +109,10 @@ if [ ! -f "$CACHEDIR/$FILENAME" ]; then
 	echo "Saving source $FILENAME to cache..."
 	tar zcf "$CACHEDIR/$FILENAME" -C $SRCDIR .
 fi
+
+#Set destination dir
+DESTDIR='/tmp/package'
+rm -rf "$DESTDIR"
 
 #Run build function
 cd "$SRCDIR/$DIRECTORY"

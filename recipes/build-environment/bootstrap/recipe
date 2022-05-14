@@ -1,5 +1,5 @@
 NAME='build-environment'
-VERSION='boostrap'
+VERSION='bootstrap'
 DIRECTORY=''
 DEPENDENCIES=''
 FILENAME='build-environment-1.0.tar.gz'
