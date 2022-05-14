@@ -1,0 +1,29 @@
+NAME='kernel-module-broadcom-wl'
+VERSION='x64.5.15.37-6.30.223.271'
+DIRECTORY=''
+DEPENDENCIES='openssl-1.1.1n elfutils=0.186 diffutils=3.8 kmod=29'
+FILENAME='kernel-module-broadcom-wl-6.30.223.271.tar.gz'
+SOURCE=(
+	'git+https://github.com/antoineco/broadcom-wl.git#7660658'
+	'https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.37.tar.xz'
+)
+
+build() {
+	cd linux-5.15.37
+	cp "$ROOT/config" ./.config
+
+        make olddefconfig
+        make prepare
+
+	make -j$(nproc) modules
+
+	cd "$SRCDIR/7660658"
+
+	make V=1 KBUILD_DIR="$SRCDIR/linux-5.15.37"
+}
+
+package() {
+	cd "$SRCDIR/7660658"
+	MDEST_DIR="$DESTDIR/lib/modules/5.15.37/kernel/drivers/net/wireless/broadcom/wl/wl.ko" make install
+	#Should compress the module here!
+}

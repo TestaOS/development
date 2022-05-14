@@ -35,6 +35,8 @@ download() {
 	fi
 }
 
+DESTDIR='/tmp/package'
+
 PACKAGE="${1%%=*}"
 VERSION="${1##*=}"
 
@@ -55,8 +57,8 @@ fi
 
 echo "Building package $1"
 
-if type 'before' 2>/dev/null | grep -q 'function'; then
-        before
+if type 'prepare' 2>/dev/null | grep -q 'function'; then
+        prepare
 fi
 
 if [ -z "$SKIP_DEPENDENCIES" ]; then
@@ -85,6 +87,7 @@ fi
 
 CACHEDIR='/opt/cache'
 SRCDIR='/tmp/source'
+rm -rf "$DESTDIR"
 rm -rf "$SRCDIR"
 mkdir -p $SRCDIR
 mkdir -p $CACHEDIR
@@ -117,6 +120,15 @@ rm -rf "$DESTDIR"
 #Run build function
 cd "$SRCDIR/$DIRECTORY"
 
+#Apply patches
+if [ ! -z "$PATCH" ]; then
+	echo 'Applying patches...'
+	for ITEM in "${PATCH[@]}"; do
+		patch -p1 < "$ROOT/$ITEM"
+	done
+fi
+
+#Run build function
 if type 'build' 2>/dev/null | grep -q 'function'; then
 	build
 else
