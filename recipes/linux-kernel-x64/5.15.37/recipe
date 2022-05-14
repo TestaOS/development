@@ -1,7 +1,7 @@
 NAME='linux-kernel-x64'
 VERSION='5.15.37'
 DIRECTORY='linux-5.15.37'
-DEPENDENCIES='wireless-regdb=2022-02-18 elfutils=0.186 diffutils=3.8 zstandard=1.5.2 kmod=29'
+DEPENDENCIES='wireless-regdb=2022-02-18 elfutils=0.186 diffutils=3.8 openssl-1.1.1n kmod=29'
 FILENAME="linux-kernel-x64-5.15.37.tar.xz"
 SOURCE="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.37.tar.xz"
 
@@ -11,33 +11,11 @@ build() {
 	make olddefconfig
 	make prepare
 
-	make -j$(nproc)
-
-	#make -j$(nproc) Image modules
-	#make M=fs/cifs
-	#make dtbs
-
-	#exit
-
-	#cp scripts/dtc/dtc /bin	
-
-	#chromeos/scripts/generate-its-script.sh -a arm64 arch/arm64/boot/Image arch/arm64/boot/dts/mediatek/*.dtb > kernel.its
-	#mkimage -D "-I dts -O dtb -p 2048" -f kernel.its vmlinux.uimg
-
-	#dd if=/dev/zero of=bootloader.bin bs=512 count=1
-	#echo "console=tty1 init=/sbin/init root=PARTUUID=%U/PARTNROFF=1 rootwait rw noinitrd" > cmdline
-
-	#vbutil_kernel --pack vmlinux.kpart --version 1 --vmlinuz vmlinux.uimg --arch aarch64 --keyblock /share/vboot/devkeys/kernel.keyblock \
-	#--signprivate /share/vboot/devkeys/kernel_data_key.vbprivk --config cmdline --bootloader bootloader.bin
+	make -j$(nproc) bzImage modules
 }
 
 package() {
-	#mkdir -p $DESTDIR/lib/modules
-	#ln -s $DESTDIR/lib/modules /lib/modules
-
 	make INSTALL_MOD_PATH="$DESTDIR" modules_install
-	#make INSTALL_HDR_PATH="$DESTDIR/usr" headers_install
-	#make INSTALL_DTBS_PATH="$DESTDIR/boot/dtbs" dtbs_install
 	rm -f $DESTDIR/lib/modules/*/{source,build}
 	mkdir -p $DESTDIR/boot
 	cp arch/x86/boot/bzImage $DESTDIR/boot

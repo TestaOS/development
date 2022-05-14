@@ -1,0 +1,16 @@
+NAME='linux-firmware'
+VERSION='20220411'
+DIRECTORY='linux-firmware-20220411'
+DEPENDENCIES=''
+FILENAME='linux-firmware-20220411.tar.gz'
+SOURCE="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/$FILENAME"
+
+build() {
+	#This should also download firmware for things like CPU microcode and GPU drivers
+	echo
+}
+
+package() {
+	mkdir -p "$DESTDIR/lib/firmware"
+	mv * "$DESTDIR/lib/firmware/"
+}

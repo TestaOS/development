@@ -1,23 +1,22 @@
 NAME='testaos'
 VERSION='x64.0.1'
 DIRECTORY=''
-DEPENDENCIES='busybox=1.35.0 linux-kernel-x64=5.15.37 iw=5.16 wpa-supplicant=2.10 containerd=1.6.2 docker=20.10.14 bash=5.1.16 iptables=1.8.7 runc=1.1.1'
+DEPENDENCIES='busybox=1.35.0 linux-kernel-x64=5.15.37 linux-firmware=20220411 glibc=2.35 iw=5.16 wpa-supplicant=2.9 containerd=1.6.2 docker=20.10.14 bash=5.1.16 
+		iptables=1.8.7 runc=1.1.1 pciutils=3.7.0 kernel-module-broadcom-wl=x64.5.15.37-6.30.223.271 kmod=29'
 FILENAME='testaos-x64.0.1.tar.gz'
 SOURCE="https://github.com/TestaOS/base-sysroot/archive/refs/heads/master.tar.gz"
 
 build() {
 	mkdir -p $DESTDIR
 	cp -r base-sysroot-master/* $DESTDIR
+}
 
-        for package in $DEPENDENCIES; do
+package() {
+	for package in $DEPENDENCIES; do
                 PACK="${package%%=*}"
                 VER="${package##*=}"
 
                 echo "Unpacking $package..."
                 tar -h -xf "/opt/packages/$PACK-$VER.tar.gz" -C $DESTDIR
         done
-}
-
-package() {
-	echo
 }
