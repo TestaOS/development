@@ -1,0 +1,16 @@
+NAME='mc'
+VERSION='4.8.28'
+DIRECTORY='mc-4.8.28'
+DEPENDENCIES='glib=2.72.1 pcre=8.45 slang=2.3.2'
+FILENAME='mc-4.8.28.tar.xz'
+SOURCE="http://ftp.midnight-commander.org/$FILENAME"
+
+build() {
+	LIBS="$LIBS -lpcre" \
+	./configure \
+	--prefix=/usr \
+        --sysconfdir=/etc \
+        --enable-charset
+
+	make -j$(nproc) V=1
+}

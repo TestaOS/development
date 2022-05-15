@@ -1,0 +1,25 @@
+NAME='glib'
+VERSION='2.72.1'
+DIRECTORY='glib-2.72.1'
+DEPENDENCIES='python=3.10.3 meson=0.61.4 ninja=1.10.2 pcre=8.45'
+FILENAME='glib-2.72.1.tar.xz'
+SOURCE="https://download.gnome.org/sources/glib/2.72/$FILENAME"
+
+build() {
+	mkdir build
+	cd build
+
+	meson \
+	--prefix=/usr \
+        --buildtype=release \
+        -Dman=false \
+	-Ddefault_library=static \
+        ..
+
+	ninja
+}
+
+package() {
+	cd build
+	DESTDIR="$DESTDIR" ninja install
+}

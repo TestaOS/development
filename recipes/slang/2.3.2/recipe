@@ -1,0 +1,20 @@
+NAME='slang'
+VERSION='2.3.2'
+DIRECTORY='slang-2.3.2'
+DEPENDENCIES='pcre=8.45 zlib=1.2.11 libpng=1.6.37 readline=8.1.2 ncurses=6.3'
+FILENAME='slang-2.3.2.tar.bz2'
+SOURCE="https://www.jedsoft.org/releases/slang/$FILENAME"
+
+build() {
+	LIBS="$LIBS $(pkg-config --static --libs readline)" \
+	./configure \
+	--prefix=/usr \
+        --sysconfdir=/etc \
+        --with-readline=gnu
+
+	make -j1 V=1
+}
+
+package() {
+	make install-static DESTDIR="$DESTDIR"
+}
